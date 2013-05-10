@@ -14,6 +14,7 @@
 @synthesize uptime;
 @synthesize signalStr;
 @synthesize connectionStatus;
+@synthesize ipAddress;
 
 static NSArray *FPopStatusSignalTypeArray = [[NSArray alloc] initWithObjects:kFPopStatusSignalTypeNamesArray];
 
@@ -39,6 +40,7 @@ static NSArray *FPopStatusSignalTypeArray = [[NSArray alloc] initWithObjects:kFP
                         (NSString *)[data valueForKey:@"ID_WIMAX_RSSI"],
                         cinr];
     status.uptime = (NSString *)[data valueForKey:@"ID_WIMAX_CONN_TIME"];
+    status.ipAddress = (NSString *)[data valueForKey:@"ID_WIMAX_IP_ADDR"];
     
     NSLog(@"Current Signal Strength %@", cinr);
     if ([cinr isEqualToString: @"N/A"]) {

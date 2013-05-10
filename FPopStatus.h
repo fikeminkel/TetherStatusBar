@@ -14,13 +14,15 @@ typedef enum {
     NSString *connectionStatus;
     NSString *signalStr;
     NSString *uptime;
-    NSString *signal;    
+    NSString *signal;
+    NSString *ipAddress;
 }
 
 @property (retain) NSString *connectionStatus;
 @property (retain) NSString *signalStr;
 @property (retain) NSString *uptime;
 @property (retain) NSString *signal;
+@property (retain) NSString *ipAddress;
 
 +(FPopStatus *) FPopStatusWithData:(NSDictionary *)data;
 

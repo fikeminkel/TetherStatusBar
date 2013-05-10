@@ -93,10 +93,11 @@
     NSImage* statusImage = [statusImages objectForKey:status.signal];
     [statusItem setImage:statusImage];
     
-    NSString *statusTxt = [NSString stringWithFormat:@"Status:%@\nSignal:%@\nUptime:%@",
+    NSString *statusTxt = [NSString stringWithFormat:@"Status:%@\nSignal:%@\nUptime:%@\nIP Address:%@",
                            status.connectionStatus,
                            status.signalStr,
-                           status.uptime];
+                           status.uptime,
+                           status.ipAddress];
     [statusItem setToolTip:statusTxt];
 }
 
