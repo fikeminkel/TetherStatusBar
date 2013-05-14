@@ -14,6 +14,8 @@
 @property (retain) id <FPopConnectionStatusPollerDelegate> delegate;
 
 -(FPopConnectionStatusPoller *) initWithDelegate:(id <FPopConnectionStatusPollerDelegate>) theDelegate;
+-(void) updateStatus:(NSDictionary *) data;
+
 @end
 
 

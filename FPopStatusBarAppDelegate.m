@@ -11,8 +11,6 @@
 #import "FPopConnectionStatus.h"
 #import "FPopStatusBarView.h"
 
-//#define SIMULATE_NETWORK 1
-
 @implementation FPopStatusBarAppDelegate
 
 @synthesize window;
@@ -24,10 +22,10 @@
     
 #ifdef SIMULATE_NETWORK
     connectionPoller = [[[FPopTestConnectionStatusPoller alloc] initWithDelegate:self] retain];
-    [connectionPoller startPolling:2.0];
+    [connectionPoller startPolling:FPopStatusBarAppDelege_POLL_INTERVAL];
 
     batteryPoller = [[[FPopTestBatteryStatusPoller alloc] initWithDelegate:self] retain];
-    [batteryPoller startPolling:2.0];
+    [batteryPoller startPolling:FPopStatusBarAppDelege_POLL_INTERVAL];
 #endif
     
 #ifndef SIMULATE_NETWORK

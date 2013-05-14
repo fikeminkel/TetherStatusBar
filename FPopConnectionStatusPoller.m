@@ -15,8 +15,7 @@
     return self;
 }
 
-
--(void)updateStatus:(NSDictionary *) data
+-(void) updateStatus:(NSDictionary *) data
 {
     [delegate connectionStatusUpdated:[FPopConnectionStatus FPopConnectionStatusWithData:data]];
 }

@@ -14,5 +14,6 @@
 @property (retain) id <FPopBatteryStatusPollerDelegate> delegate;
 
 -(FPopBatteryStatusPoller *) initWithDelegate:(id <FPopBatteryStatusPollerDelegate>) theDelegate;
+-(void) updateStatus:(NSDictionary *) data;
 
 @end

@@ -13,5 +13,7 @@
     }
     return self;
 }
-
+-(void) updateStatus:(NSDictionary *) data {
+    [delegate batteryStatusUpdated:[FPopBatteryStatus FPopBatteryStatusWithData:data]];
+}
 @end

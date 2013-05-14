@@ -1,13 +1,13 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    kFPopBatteryStatusLevelType_NONE,
+    kFPopBatteryStatusLevelType_UNKNOWN,
     kFPopBatteryStatusLevelType_LOW,
     kFPopBatteryStatusLevelType_MEDIUM,
     kFPopBatteryStatusLevelType_FULL,
     kFPopBatteryStatusLevelType_DEFAULT = kFPopBatteryStatusLevelType_FULL
 } FPopBatteryStatusLevelType;
-#define kFPopBatteryStatusLevelTypeNamesArray @"none", @"low", @"medium", @"full", nil
+#define kFPopBatteryStatusLevelTypeNamesArray @"unknown", @"low", @"medium", @"full", nil
 
 @interface FPopBatteryStatus : NSObject {
     NSString *status;

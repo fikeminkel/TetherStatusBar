@@ -28,7 +28,11 @@ static NSArray *FPopBatteryStatusLevelTypeArray = [[NSArray alloc] initWithObjec
     //LEVEL: "3"
     //STATUS: "normal"
     status.status = [data objectForKey:@"STATUS"];
-    NSInteger levelInt = [(NSString *)[data objectForKey:@"LEVEL"] intValue];
+    NSInteger levelInt =  [(NSString *)[data objectForKey:@"LEVEL"] intValue];
+    if (!status.status) {
+        levelInt = kFPopBatteryStatusLevelType_UNKNOWN;
+        status.status = @"unknown";
+    }
     status.level =  [FPopBatteryStatus stringFromLevelType:(FPopBatteryStatusLevelType) levelInt];
     status.statusStr = [NSString stringWithFormat:@"%@-%@", status.level, status.status];
     return status;

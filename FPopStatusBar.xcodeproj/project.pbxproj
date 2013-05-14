@@ -26,6 +26,7 @@
 		DD8225331742D35C006EFE04 /* battery-low-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252D1742D35C006EFE04 /* battery-low-normal.png */; };
 		DD8225341742D35C006EFE04 /* battery-medium-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252E1742D35C006EFE04 /* battery-medium-charging.png */; };
 		DD8225351742D35C006EFE04 /* battery-medium-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252F1742D35C006EFE04 /* battery-medium-normal.png */; };
+		DD8225371742F332006EFE04 /* battery-unknown-unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8225361742F332006EFE04 /* battery-unknown-unknown.png */; };
 		DDD1D5CD173C1DFC0085FDC6 /* HardwareNetworkMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */; };
 		DDD1D5D7173D44920085FDC6 /* network-gsm-full_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */; };
 		DDD1D5D8173D44920085FDC6 /* network-gsm-high_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D2173D44920085FDC6 /* network-gsm-high_18.png */; };
@@ -71,6 +72,7 @@
 		DD82252D1742D35C006EFE04 /* battery-low-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-low-normal.png"; path = "Resources/battery-low-normal.png"; sourceTree = "<group>"; };
 		DD82252E1742D35C006EFE04 /* battery-medium-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-medium-charging.png"; path = "Resources/battery-medium-charging.png"; sourceTree = "<group>"; };
 		DD82252F1742D35C006EFE04 /* battery-medium-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-medium-normal.png"; path = "Resources/battery-medium-normal.png"; sourceTree = "<group>"; };
+		DD8225361742F332006EFE04 /* battery-unknown-unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-unknown-unknown.png"; path = "Resources/battery-unknown-unknown.png"; sourceTree = "<group>"; };
 		DDD1D5CB173C1DFC0085FDC6 /* HardwareNetworkMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HardwareNetworkMonitor.h; sourceTree = "<group>"; };
 		DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HardwareNetworkMonitor.m; sourceTree = "<group>"; };
 		DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "network-gsm-full_18.png"; path = "Resources/network-gsm-full_18.png"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD8225361742F332006EFE04 /* battery-unknown-unknown.png */,
 				DD82252A1742D35C006EFE04 /* battery-full-charging.png */,
 				DD82252B1742D35C006EFE04 /* battery-full-normal.png */,
 				DD82252C1742D35C006EFE04 /* battery-low-charging.png */,
@@ -279,6 +282,7 @@
 				DD8225331742D35C006EFE04 /* battery-low-normal.png in Resources */,
 				DD8225341742D35C006EFE04 /* battery-medium-charging.png in Resources */,
 				DD8225351742D35C006EFE04 /* battery-medium-normal.png in Resources */,
+				DD8225371742F332006EFE04 /* battery-unknown-unknown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
