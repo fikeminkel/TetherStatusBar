@@ -15,7 +15,7 @@
     CFRunLoopSourceRef rlSrc;
     NSMutableDictionary *networkInterfaceStates;
     NSString *previousIPCombined;
-    id <FPopStatusNetworkMonitorDelegate> delegate;
+    id <HardwareNetworkMonitorDelegate> delegate;
 }
 
 @property (nonatomic, assign) SCDynamicStoreRef dynStore;

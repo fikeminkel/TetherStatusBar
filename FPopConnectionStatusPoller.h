@@ -1,21 +1,21 @@
 #import <Foundation/Foundation.h>
-#import "FPopStatus.h"
+#import "FPopConnectionStatus.h"
 
-@protocol FPopStatusPollerDelegate <NSObject>
+@protocol FPopConnectionStatusPollerDelegate <NSObject>
 @required
-- (void) statusUpdated:(FPopStatus *)status;
+- (void) connectionStatusUpdated:(FPopConnectionStatus *)status;
 @end
 
-@interface FPopStatusPoller : NSObject <NSURLConnectionDelegate> {
-    id <FPopStatusPollerDelegate> delegate;
+@interface FPopConnectionStatusPoller : NSObject <NSURLConnectionDelegate> {
+    id <FPopConnectionStatusPollerDelegate> delegate;
     NSTimer* statusTimer;
     NSMutableData *responseData;
 
 }
 
-@property (retain) id <FPopStatusPollerDelegate> delegate;
+@property (retain) id <FPopConnectionStatusPollerDelegate> delegate;
 
--(FPopStatusPoller *) initWithDelegate:(id <FPopStatusPollerDelegate>) theDelegate;
+-(FPopConnectionStatusPoller *) initWithDelegate:(id <FPopConnectionStatusPollerDelegate>) theDelegate;
 -(void) pollStatus:(NSTimeInterval)interval;
 -(void) stopPolling;
 @end

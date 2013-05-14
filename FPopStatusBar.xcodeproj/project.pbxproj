@@ -12,10 +12,12 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		DD9CE769173A75100005D8EE /* FPopStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9CE768173A75100005D8EE /* FPopStatusPoller.m */; };
-		DD9CE76C173A77410005D8EE /* FPopStatus.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD9CE76B173A77410005D8EE /* FPopStatus.mm */; };
-		DDD1D5CD173C1DFC0085FDC6 /* FPopStatusNetworkMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD1D5CC173C1DFC0085FDC6 /* FPopStatusNetworkMonitor.m */; };
-		DDD1D5D0173D1D930085FDC6 /* FPopTestStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD1D5CF173D1D930085FDC6 /* FPopTestStatusPoller.m */; };
+		DD3CE7EF173D8C3B0074FFEA /* FPopStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7EE173D8C3B0074FFEA /* FPopStatusBarView.m */; };
+		DD3CE7F11741A52E0074FFEA /* battery-030.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3CE7F01741A52E0074FFEA /* battery-030.png */; };
+		DD3CE7F41742A9AC0074FFEA /* FPopConnectionStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F31742A9AC0074FFEA /* FPopConnectionStatusPoller.m */; };
+		DD3CE7F71742AA420074FFEA /* FPopConnectionStatus.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F61742AA420074FFEA /* FPopConnectionStatus.mm */; };
+		DD3CE7FA1742AB980074FFEA /* FPopTestConnectionStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F91742AB980074FFEA /* FPopTestConnectionStatusPoller.m */; };
+		DDD1D5CD173C1DFC0085FDC6 /* HardwareNetworkMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */; };
 		DDD1D5D7173D44920085FDC6 /* network-gsm-full_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */; };
 		DDD1D5D8173D44920085FDC6 /* network-gsm-high_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D2173D44920085FDC6 /* network-gsm-high_18.png */; };
 		DDD1D5D9173D44920085FDC6 /* network-gsm-low_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D3173D44920085FDC6 /* network-gsm-low_18.png */; };
@@ -37,14 +39,17 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* FPopStatusBar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FPopStatusBar-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* FPopStatusBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FPopStatusBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD9CE767173A75100005D8EE /* FPopStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatusPoller.h; sourceTree = "<group>"; };
-		DD9CE768173A75100005D8EE /* FPopStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopStatusPoller.m; sourceTree = "<group>"; };
-		DD9CE76A173A77410005D8EE /* FPopStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatus.h; sourceTree = "<group>"; };
-		DD9CE76B173A77410005D8EE /* FPopStatus.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FPopStatus.mm; sourceTree = "<group>"; };
-		DDD1D5CB173C1DFC0085FDC6 /* FPopStatusNetworkMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatusNetworkMonitor.h; sourceTree = "<group>"; };
-		DDD1D5CC173C1DFC0085FDC6 /* FPopStatusNetworkMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopStatusNetworkMonitor.m; sourceTree = "<group>"; };
-		DDD1D5CE173D1D930085FDC6 /* FPopTestStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopTestStatusPoller.h; sourceTree = "<group>"; };
-		DDD1D5CF173D1D930085FDC6 /* FPopTestStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopTestStatusPoller.m; sourceTree = "<group>"; };
+		DD3CE7ED173D8C3B0074FFEA /* FPopStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatusBarView.h; sourceTree = "<group>"; };
+		DD3CE7EE173D8C3B0074FFEA /* FPopStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopStatusBarView.m; sourceTree = "<group>"; };
+		DD3CE7F01741A52E0074FFEA /* battery-030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-030.png"; path = "Resources/battery-030.png"; sourceTree = "<group>"; };
+		DD3CE7F21742A9AC0074FFEA /* FPopConnectionStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopConnectionStatusPoller.h; sourceTree = "<group>"; };
+		DD3CE7F31742A9AC0074FFEA /* FPopConnectionStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopConnectionStatusPoller.m; sourceTree = "<group>"; };
+		DD3CE7F51742AA420074FFEA /* FPopConnectionStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopConnectionStatus.h; sourceTree = "<group>"; };
+		DD3CE7F61742AA420074FFEA /* FPopConnectionStatus.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FPopConnectionStatus.mm; sourceTree = "<group>"; };
+		DD3CE7F81742AB980074FFEA /* FPopTestConnectionStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopTestConnectionStatusPoller.h; sourceTree = "<group>"; };
+		DD3CE7F91742AB980074FFEA /* FPopTestConnectionStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopTestConnectionStatusPoller.m; sourceTree = "<group>"; };
+		DDD1D5CB173C1DFC0085FDC6 /* HardwareNetworkMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HardwareNetworkMonitor.h; sourceTree = "<group>"; };
+		DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HardwareNetworkMonitor.m; sourceTree = "<group>"; };
 		DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "network-gsm-full_18.png"; path = "Resources/network-gsm-full_18.png"; sourceTree = "<group>"; };
 		DDD1D5D2173D44920085FDC6 /* network-gsm-high_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "network-gsm-high_18.png"; path = "Resources/network-gsm-high_18.png"; sourceTree = "<group>"; };
 		DDD1D5D3173D44920085FDC6 /* network-gsm-low_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "network-gsm-low_18.png"; path = "Resources/network-gsm-low_18.png"; sourceTree = "<group>"; };
@@ -68,16 +73,18 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DD3CE7F81742AB980074FFEA /* FPopTestConnectionStatusPoller.h */,
+				DD3CE7F91742AB980074FFEA /* FPopTestConnectionStatusPoller.m */,
+				DD3CE7F51742AA420074FFEA /* FPopConnectionStatus.h */,
+				DD3CE7F61742AA420074FFEA /* FPopConnectionStatus.mm */,
+				DD3CE7F21742A9AC0074FFEA /* FPopConnectionStatusPoller.h */,
+				DD3CE7F31742A9AC0074FFEA /* FPopConnectionStatusPoller.m */,
 				256AC3D80F4B6AC300CF3369 /* FPopStatusBarAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* FPopStatusBarAppDelegate.m */,
-				DD9CE767173A75100005D8EE /* FPopStatusPoller.h */,
-				DD9CE768173A75100005D8EE /* FPopStatusPoller.m */,
-				DD9CE76A173A77410005D8EE /* FPopStatus.h */,
-				DD9CE76B173A77410005D8EE /* FPopStatus.mm */,
-				DDD1D5CB173C1DFC0085FDC6 /* FPopStatusNetworkMonitor.h */,
-				DDD1D5CC173C1DFC0085FDC6 /* FPopStatusNetworkMonitor.m */,
-				DDD1D5CE173D1D930085FDC6 /* FPopTestStatusPoller.h */,
-				DDD1D5CF173D1D930085FDC6 /* FPopTestStatusPoller.m */,
+				DDD1D5CB173C1DFC0085FDC6 /* HardwareNetworkMonitor.h */,
+				DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */,
+				DD3CE7ED173D8C3B0074FFEA /* FPopStatusBarView.h */,
+				DD3CE7EE173D8C3B0074FFEA /* FPopStatusBarView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -132,6 +139,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD3CE7F01741A52E0074FFEA /* battery-030.png */,
 				DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */,
 				DDD1D5D2173D44920085FDC6 /* network-gsm-high_18.png */,
 				DDD1D5D3173D44920085FDC6 /* network-gsm-low_18.png */,
@@ -212,6 +220,7 @@
 				DDD1D5DA173D44920085FDC6 /* network-gsm-medium_18.png in Resources */,
 				DDD1D5DB173D44920085FDC6 /* network-gsm-none_18.png in Resources */,
 				DDD1D5DC173D44920085FDC6 /* network-wireless-disconnected_18.png in Resources */,
+				DD3CE7F11741A52E0074FFEA /* battery-030.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,10 +233,11 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* FPopStatusBarAppDelegate.m in Sources */,
-				DD9CE769173A75100005D8EE /* FPopStatusPoller.m in Sources */,
-				DD9CE76C173A77410005D8EE /* FPopStatus.mm in Sources */,
-				DDD1D5CD173C1DFC0085FDC6 /* FPopStatusNetworkMonitor.m in Sources */,
-				DDD1D5D0173D1D930085FDC6 /* FPopTestStatusPoller.m in Sources */,
+				DDD1D5CD173C1DFC0085FDC6 /* HardwareNetworkMonitor.m in Sources */,
+				DD3CE7EF173D8C3B0074FFEA /* FPopStatusBarView.m in Sources */,
+				DD3CE7F41742A9AC0074FFEA /* FPopConnectionStatusPoller.m in Sources */,
+				DD3CE7F71742AA420074FFEA /* FPopConnectionStatus.mm in Sources */,
+				DD3CE7FA1742AB980074FFEA /* FPopTestConnectionStatusPoller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

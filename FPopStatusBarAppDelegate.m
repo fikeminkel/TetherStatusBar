@@ -1,8 +1,10 @@
+#import "HardwareNetworkMonitor.h"
+
 #import "FPopStatusBarAppDelegate.h"
-#import "FPopStatusPoller.h"
-#import "FPopTestStatusPoller.h"
-#import "FPopStatus.h"
-#import "FPopStatusNetworkMonitor.h"
+#import "FPopConnectionStatusPoller.h"
+#import "FPopTestConnectionStatusPoller.h"
+#import "FPopConnectionStatus.h"
+#import "FPopStatusBarView.h"
 
 //#define SIMULATE_NETWORK 1
 
@@ -10,39 +12,22 @@
 
 @synthesize window;
 
--(NSImage *) resizedImageNamed:(NSString *) name {
-    NSImage *image = [NSImage imageNamed:name];
-    if (image) {
-        NSSize imageSize = [image size];
-        imageSize.width = 18;
-        imageSize.height = 18;
-        [image setSize:imageSize];
-    }
-    return image;
-}
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSLog(@"applicationDidFinishLaunching");
     app = (NSApplication *)aNotification.object;
 
-    statusImages = [[[NSMutableDictionary alloc] init] retain];
-    [statusImages setObject:[self resizedImageNamed:@"network-gsm-full_18.png" ] forKey:@"full"];
-    [statusImages setObject:[self resizedImageNamed:@"network-gsm-high_18.png" ] forKey:@"high"];
-    [statusImages setObject:[self resizedImageNamed:@"network-gsm-medium_18.png" ] forKey:@"medium"];
-    [statusImages setObject:[self resizedImageNamed:@"network-gsm-low_18.png" ] forKey:@"low"];
-    [statusImages setObject:[self resizedImageNamed:@"network-gsm-none_18.png" ] forKey:@"none"];
-    [statusImages setObject:[self resizedImageNamed:@"network-wireless-disconnected_18.png" ] forKey:@"disconnected"];
-
+    statusView = [[FPopStatusBarView alloc] initWithFrame:NSZeroRect];
     
     [self clearStatus];
 #ifdef SIMULATE_NETWORK
-    poller = [[[FPopTestStatusPoller alloc] initWithDelegate:self] retain];
+    poller = [[[FPopTestConnectionStatusPoller alloc] initWithDelegate:self] retain];
     [poller pollStatus:2.0];
 #endif
     
 #ifndef SIMULATE_NETWORK
-    poller = [[[FPopStatusPoller alloc] initWithDelegate:self] retain];
-    networkMonitor = [[[FPopStatusNetworkMonitor alloc] initWithDelegate:self] retain];
+    poller = [[[FPopConnectionStatusPoller alloc] initWithDelegate:self] retain];
+    networkMonitor = [[[HardwareNetworkMonitor alloc] initWithDelegate:self] retain];
     [networkMonitor fireOnLaunch];
 #endif
 }
@@ -56,8 +41,8 @@
     [networkMonitor release];
     networkMonitor = nil;
     
-    [statusImages release];
-    statusImages = nil;
+    [statusView release];
+    statusView = nil;
 }
 
 -(void)awakeFromNib
@@ -65,8 +50,11 @@
     NSLog(@"awakeFromNib");
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setMenu:statusMenu];
-    [statusItem setTitle:@"FP"];
     [statusItem setHighlightMode:YES];
+    
+    statusView = [[[FPopStatusBarView alloc] initWithFrame:NSMakeRect(0, 0, 40, 20)] retain];
+
+    [statusItem setView:statusView];
     
     NSMenuItem *quitItem = [statusMenu itemAtIndex:0];
     [quitItem setAction:@selector(quitApplication)];
@@ -81,24 +69,24 @@
 
 -(void) clearStatus
 {
-    [statusItem setTitle:@""];
-    [statusItem setToolTip:@""];
-    [statusItem setImage:[statusImages objectForKey:@"disconnected"]];
+    [statusView setToolTip:@""];
 }
 
--(void) statusUpdated:(FPopStatus *)status
+-(void) connectionStatusUpdated:(FPopConnectionStatus *)status
 {
-    NSLog(@"updateConnectionStatus %@", status);
-    
-    NSImage* statusImage = [statusImages objectForKey:status.signal];
-    [statusItem setImage:statusImage];
-    
+    NSLog(@"connectionStatusUpdated %@", status);
+
+    [statusItem setView:nil];
+    [statusView release];
+    // TODO add battery poller
+    statusView = [[[FPopStatusBarView alloc] initWithFrame:NSMakeRect(0, 0, 40, 20) signal:status.signal battery:@"battery"] retain];
     NSString *statusTxt = [NSString stringWithFormat:@"Status:%@\nSignal:%@\nUptime:%@\nIP Address:%@",
-                           status.connectionStatus,
+                           status.status,
                            status.signalStr,
                            status.uptime,
                            status.ipAddress];
-    [statusItem setToolTip:statusTxt];
+    [statusView setToolTip:statusTxt];
+    [statusItem setView:statusView];
 }
 
 -(void) ethernetConnected:(NSString *)interfaceName description:(NSString *)description {

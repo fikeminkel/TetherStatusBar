@@ -22,18 +22,18 @@ static NSMutableDictionary *batteryImages;
     self = [super initWithFrame:frame];
     if (self) {
         [self initStatusImages];
+        NSLog(@"FPopStatusBar initWithFrame: signal: %@ battery:%@", signal, battery);
         connectionView = [[[NSImageView alloc] initWithFrame:NSMakeRect(0, 2, 18, 18)] retain];
         [connectionView setImage:[statusImages objectForKey:signal]];
         [self addSubview:connectionView];
         batteryView = [[[NSImageView alloc] initWithFrame:NSMakeRect(20, 2, 16, 16)] retain];
-        [batteryView setImage:[self resizedImageNamed:battery size:16]];
+        [batteryView setImage:[batteryImages objectForKey:battery]];
         [self addSubview:batteryView];
     }
     return self;
 }
 
 -(void) initStatusImages {
-    NSLog(@"initStatusImages");
     if (!statusImages) {
         statusImages = [[[NSMutableDictionary alloc] init] retain];
         [statusImages setObject:[self resizedImageNamed:@"network-gsm-full_18.png" size:18] forKey:@"full"];

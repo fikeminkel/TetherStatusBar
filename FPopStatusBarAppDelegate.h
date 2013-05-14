@@ -1,25 +1,24 @@
 #import <Cocoa/Cocoa.h>
-#import "FPopStatusPoller.h"
-#import "FPopStatusNetworkMonitor.h"
+#import "HardwareNetworkMonitor.h"
+#import "FPopConnectionStatusPoller.h"
+#import "FPopStatusBarView.h"
 
 #define FPopStatusBarAppDelege_POLL_INTERVAL 2.0
 
-@interface FPopStatusBarAppDelegate : NSObject <NSApplicationDelegate, FPopStatusPollerDelegate, FPopStatusNetworkMonitorDelegate> {
+@interface FPopStatusBarAppDelegate : NSObject <NSApplicationDelegate, FPopConnectionStatusPollerDelegate, HardwareNetworkMonitorDelegate> {
     NSApplication *app;
     NSWindow *window;
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
-    FPopStatusPoller *poller;
-    FPopStatusNetworkMonitor *networkMonitor;
-    
-    NSMutableDictionary *statusImages;
-    NSDictionary *currentConnectionData;
+    FPopConnectionStatusPoller *poller;
+    HardwareNetworkMonitor *networkMonitor;
+    FPopStatusBarView *statusView;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 
 
--(void) statusUpdated:(FPopStatus *)status;
+-(void) connectionStatusUpdated:(FPopConnectionStatus *)status;
 
 -(void) ethernetConnected:(NSString *)interfaceName description:(NSString *)description;
 -(void) ethernetDisconnected: (NSString *)interfaceName;

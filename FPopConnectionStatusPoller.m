@@ -1,11 +1,11 @@
-#import "FPopStatusPoller.h"
-#import "FPopStatus.h"
+#import "FPopConnectionStatusPoller.h"
+#import "FPopConnectionStatus.h"
 
-@implementation FPopStatusPoller
+@implementation FPopConnectionStatusPoller
 
 @synthesize delegate;
 
--(FPopStatusPoller *) initWithDelegate:(id<FPopStatusPollerDelegate>)theDelegate
+-(FPopConnectionStatusPoller *) initWithDelegate:(id<FPopConnectionStatusPollerDelegate>)theDelegate
 {
     self = [self init];
     if (self) {
@@ -70,7 +70,7 @@
     NSError *myError = nil;
     NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&myError];
     jsonObj = [jsonObj objectForKey:@"data"];
-    [delegate statusUpdated:[FPopStatus FPopStatusWithData:jsonObj]];
+    [delegate connectionStatusUpdated:[FPopConnectionStatus FPopConnectionStatusWithData:jsonObj]];
     [responseData release];
 }
 

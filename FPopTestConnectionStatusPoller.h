@@ -1,6 +1,6 @@
-#import "FPopStatusPoller.h"
+#import "FPopConnectionStatusPoller.h"
 
-@interface FPopTestStatusPoller : FPopStatusPoller {
+@interface FPopTestConnectionStatusPoller : FPopConnectionStatusPoller {
     NSMutableDictionary *testdata;
     NSArray *testdataOptions;
     NSUInteger testdataCurrentOption;

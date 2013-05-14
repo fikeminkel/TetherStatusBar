@@ -1,29 +1,29 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    kFPopStatusSignalType_NONE,
-    kFPopStatusSignalType_LOW,
-    kFPopStatusSignalType_MEDIUM,
-    kFPopStatusSignalType_HIGH,
-    kFPopStatusSignalType_FULL,
-    kFPopStatusSignalType_DEFAULT = kFPopStatusSignalType_NONE
-} FPopStatusSignalType;
-#define kFPopStatusSignalTypeNamesArray @"none", @"low", @"medium", @"high", @"full", nil
+    kFPopConnectionStatusSignalType_NONE,
+    kFPopConnectionStatusSignalType_LOW,
+    kFPopConnectionStatusSignalType_MEDIUM,
+    kFPopConnectionStatusSignalType_HIGH,
+    kFPopConnectionStatusSignalType_FULL,
+    kFPopConnectionStatusSignalType_DEFAULT = kFPopConnectionStatusSignalType_NONE
+} FPopConnectionStatusSignalType;
+#define kFPopConnectionStatusSignalTypeNamesArray @"none", @"low", @"medium", @"high", @"full", nil
 
-@interface FPopStatus : NSObject {
-    NSString *connectionStatus;
+@interface FPopConnectionStatus : NSObject {
+    NSString *status;
     NSString *signalStr;
     NSString *uptime;
     NSString *signal;
     NSString *ipAddress;
 }
 
-@property (retain) NSString *connectionStatus;
+@property (retain) NSString *status;
 @property (retain) NSString *signalStr;
 @property (retain) NSString *uptime;
 @property (retain) NSString *signal;
 @property (retain) NSString *ipAddress;
 
-+(FPopStatus *) FPopStatusWithData:(NSDictionary *)data;
++(FPopConnectionStatus *) FPopConnectionStatusWithData:(NSDictionary *)data;
 
 @end
