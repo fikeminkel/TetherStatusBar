@@ -105,7 +105,7 @@
         [lastConnectionStatus release];
         lastConnectionStatus = [connectionStatus retain];
     }
-    [statusItem setToolTip:statusTxt];
+    [[statusItem view] setToolTip:statusTxt];
 }
 
 -(void) batteryStatusUpdated:(FPopBatteryStatus *)batteryStatus
