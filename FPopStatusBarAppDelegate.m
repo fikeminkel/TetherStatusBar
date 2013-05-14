@@ -14,15 +14,13 @@
 
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSLog(@"applicationDidFinishLaunching");
     app = (NSApplication *)aNotification.object;
-
     statusView = [[FPopStatusBarView alloc] initWithFrame:NSZeroRect];
-    
     [self clearStatus];
+    
 #ifdef SIMULATE_NETWORK
     poller = [[[FPopTestConnectionStatusPoller alloc] initWithDelegate:self] retain];
-    [poller pollStatus:2.0];
+    [poller startPolling:2.0];
 #endif
     
 #ifndef SIMULATE_NETWORK
@@ -99,7 +97,7 @@
 
 -(void) wifiConnected:(NSString *)networkName {
     NSLog(@"wifiConnected: %@", networkName);
-    [poller pollStatus:FPopStatusBarAppDelege_POLL_INTERVAL];
+    [poller startPolling:FPopStatusBarAppDelege_POLL_INTERVAL];
 }
 
 -(void) wifiDisconnected:(NSString *)networkName {

@@ -17,6 +17,8 @@
 		DD3CE7F41742A9AC0074FFEA /* FPopConnectionStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F31742A9AC0074FFEA /* FPopConnectionStatusPoller.m */; };
 		DD3CE7F71742AA420074FFEA /* FPopConnectionStatus.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F61742AA420074FFEA /* FPopConnectionStatus.mm */; };
 		DD3CE7FA1742AB980074FFEA /* FPopTestConnectionStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F91742AB980074FFEA /* FPopTestConnectionStatusPoller.m */; };
+		DD3CE7FD1742AF890074FFEA /* FPopBatteryStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7FC1742AF890074FFEA /* FPopBatteryStatusPoller.m */; };
+		DD3CE8001742AFF40074FFEA /* FPopStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7FF1742AFF40074FFEA /* FPopStatusPoller.m */; };
 		DDD1D5CD173C1DFC0085FDC6 /* HardwareNetworkMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */; };
 		DDD1D5D7173D44920085FDC6 /* network-gsm-full_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */; };
 		DDD1D5D8173D44920085FDC6 /* network-gsm-high_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D2173D44920085FDC6 /* network-gsm-high_18.png */; };
@@ -48,6 +50,11 @@
 		DD3CE7F61742AA420074FFEA /* FPopConnectionStatus.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FPopConnectionStatus.mm; sourceTree = "<group>"; };
 		DD3CE7F81742AB980074FFEA /* FPopTestConnectionStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopTestConnectionStatusPoller.h; sourceTree = "<group>"; };
 		DD3CE7F91742AB980074FFEA /* FPopTestConnectionStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopTestConnectionStatusPoller.m; sourceTree = "<group>"; };
+		DD3CE7FB1742AF890074FFEA /* FPopBatteryStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopBatteryStatusPoller.h; sourceTree = "<group>"; };
+		DD3CE7FC1742AF890074FFEA /* FPopBatteryStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopBatteryStatusPoller.m; sourceTree = "<group>"; };
+		DD3CE7FE1742AFF40074FFEA /* FPopStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatusPoller.h; sourceTree = "<group>"; };
+		DD3CE7FF1742AFF40074FFEA /* FPopStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopStatusPoller.m; sourceTree = "<group>"; };
+		DD3CE8011742B1B20074FFEA /* FPopStatusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPopStatusUtils.h; sourceTree = "<group>"; };
 		DDD1D5CB173C1DFC0085FDC6 /* HardwareNetworkMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HardwareNetworkMonitor.h; sourceTree = "<group>"; };
 		DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HardwareNetworkMonitor.m; sourceTree = "<group>"; };
 		DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "network-gsm-full_18.png"; path = "Resources/network-gsm-full_18.png"; sourceTree = "<group>"; };
@@ -85,6 +92,11 @@
 				DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */,
 				DD3CE7ED173D8C3B0074FFEA /* FPopStatusBarView.h */,
 				DD3CE7EE173D8C3B0074FFEA /* FPopStatusBarView.m */,
+				DD3CE7FB1742AF890074FFEA /* FPopBatteryStatusPoller.h */,
+				DD3CE7FC1742AF890074FFEA /* FPopBatteryStatusPoller.m */,
+				DD3CE7FE1742AFF40074FFEA /* FPopStatusPoller.h */,
+				DD3CE7FF1742AFF40074FFEA /* FPopStatusPoller.m */,
+				DD3CE8011742B1B20074FFEA /* FPopStatusUtils.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -238,6 +250,8 @@
 				DD3CE7F41742A9AC0074FFEA /* FPopConnectionStatusPoller.m in Sources */,
 				DD3CE7F71742AA420074FFEA /* FPopConnectionStatus.mm in Sources */,
 				DD3CE7FA1742AB980074FFEA /* FPopTestConnectionStatusPoller.m in Sources */,
+				DD3CE7FD1742AF890074FFEA /* FPopBatteryStatusPoller.m in Sources */,
+				DD3CE8001742AFF40074FFEA /* FPopStatusPoller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +320,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_CFLAGS[arch=*]" = "-DDEBUG";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SystemConfiguration,
@@ -341,6 +356,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_CFLAGS[arch=*]" = "-DDEBUG";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SystemConfiguration,

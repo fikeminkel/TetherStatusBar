@@ -1,6 +1,5 @@
-
-
 #import "FPopTestConnectionStatusPoller.h"
+#import "FPopStatusUtils.h"
 
 @implementation FPopTestConnectionStatusPoller
 
@@ -16,7 +15,7 @@
     return self;
 }
 
--(void) connectionStatus
+-(void) checkStatus
 {
 //    NSLog(@"connectionStatus");
     NSMutableDictionary *data = [[[NSMutableDictionary alloc] init] autorelease];
@@ -25,8 +24,8 @@
     [data setValue:@"127.0.0.1" forKey:@"ID_WIMAX_IP_ADDR"];
     [data setValue:@"-72" forKey:@"ID_WIMAX_RSSI"];
     [data setValue:[testdataOptions objectAtIndex:testdataCurrentOption] forKey:@"ID_WIMAX_CINR"];
-//    NSLog(@"connectionStatus testdata %ld %ld", (unsigned long)testdataCurrentOption, (unsigned long)testdataOptions.count);
     testdataCurrentOption = (testdataCurrentOption >= testdataOptions.count-1) ? 0 : testdataCurrentOption + 1;
+    DLog(@"data: %@", data);
     [delegate connectionStatusUpdated:[FPopConnectionStatus FPopConnectionStatusWithData:data]];
 }
 
