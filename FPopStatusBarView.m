@@ -19,15 +19,16 @@ static NSMutableDictionary *batteryImages;
 
 - (id)initWithFrame:(NSRect)frame signal:(NSString*) signal battery:(NSString*) battery
 {
-    self = [super initWithFrame:frame];
+    self = [self initWithFrame:frame];
     if (self) {
         [self initStatusImages];
         NSLog(@"FPopStatusBar initWithFrame: signal: %@ battery:%@", signal, battery);
         connectionView = [[[NSImageView alloc] initWithFrame:NSMakeRect(0, 2, 18, 18)] retain];
         [connectionView setImage:[statusImages objectForKey:signal]];
         [self addSubview:connectionView];
-        batteryView = [[[NSImageView alloc] initWithFrame:NSMakeRect(20, 2, 16, 16)] retain];
-        [batteryView setImage:[batteryImages objectForKey:battery]];
+        batteryView = [[[NSImageView alloc] initWithFrame:NSMakeRect(18, 2, 16, 16)] retain];
+        // TODO: do I need to make another dictionary mapping status to images?
+        [batteryView setImage:[self resizedImageNamed:[NSString stringWithFormat:@"battery-%@.png",battery] size:16]];
         [self addSubview:batteryView];
     }
     return self;
@@ -42,12 +43,6 @@ static NSMutableDictionary *batteryImages;
         [statusImages setObject:[self resizedImageNamed:@"network-gsm-low_18.png" size:18] forKey:@"low"];
         [statusImages setObject:[self resizedImageNamed:@"network-gsm-none_18.png" size:18] forKey:@"none"];
         [statusImages setObject:[self resizedImageNamed:@"network-wireless-disconnected_18.png" size:18] forKey:@"disconnected"];
-    }
-    if (!batteryImages) {
-        batteryImages = [[[NSMutableDictionary alloc] init] retain];
-        [batteryImages setObject:[self resizedImageNamed:@"battery-030.png" size:18] forKey:@"battery"];
-        // TODO add other battery images
-
     }
 }
 

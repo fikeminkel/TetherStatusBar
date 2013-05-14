@@ -13,12 +13,19 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		DD3CE7EF173D8C3B0074FFEA /* FPopStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7EE173D8C3B0074FFEA /* FPopStatusBarView.m */; };
-		DD3CE7F11741A52E0074FFEA /* battery-030.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3CE7F01741A52E0074FFEA /* battery-030.png */; };
 		DD3CE7F41742A9AC0074FFEA /* FPopConnectionStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F31742A9AC0074FFEA /* FPopConnectionStatusPoller.m */; };
 		DD3CE7F71742AA420074FFEA /* FPopConnectionStatus.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F61742AA420074FFEA /* FPopConnectionStatus.mm */; };
 		DD3CE7FA1742AB980074FFEA /* FPopTestConnectionStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F91742AB980074FFEA /* FPopTestConnectionStatusPoller.m */; };
 		DD3CE7FD1742AF890074FFEA /* FPopBatteryStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7FC1742AF890074FFEA /* FPopBatteryStatusPoller.m */; };
 		DD3CE8001742AFF40074FFEA /* FPopStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7FF1742AFF40074FFEA /* FPopStatusPoller.m */; };
+		DD3CE8041742B9D70074FFEA /* FPopBatteryStatus.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE8031742B9D70074FFEA /* FPopBatteryStatus.mm */; };
+		DD3CE8091742BCD70074FFEA /* FPopTestBatteryStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE8081742BCD70074FFEA /* FPopTestBatteryStatusPoller.m */; };
+		DD8225301742D35C006EFE04 /* battery-full-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252A1742D35C006EFE04 /* battery-full-charging.png */; };
+		DD8225311742D35C006EFE04 /* battery-full-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252B1742D35C006EFE04 /* battery-full-normal.png */; };
+		DD8225321742D35C006EFE04 /* battery-low-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252C1742D35C006EFE04 /* battery-low-charging.png */; };
+		DD8225331742D35C006EFE04 /* battery-low-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252D1742D35C006EFE04 /* battery-low-normal.png */; };
+		DD8225341742D35C006EFE04 /* battery-medium-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252E1742D35C006EFE04 /* battery-medium-charging.png */; };
+		DD8225351742D35C006EFE04 /* battery-medium-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252F1742D35C006EFE04 /* battery-medium-normal.png */; };
 		DDD1D5CD173C1DFC0085FDC6 /* HardwareNetworkMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */; };
 		DDD1D5D7173D44920085FDC6 /* network-gsm-full_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */; };
 		DDD1D5D8173D44920085FDC6 /* network-gsm-high_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D2173D44920085FDC6 /* network-gsm-high_18.png */; };
@@ -43,7 +50,6 @@
 		8D1107320486CEB800E47090 /* FPopStatusBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FPopStatusBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD3CE7ED173D8C3B0074FFEA /* FPopStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatusBarView.h; sourceTree = "<group>"; };
 		DD3CE7EE173D8C3B0074FFEA /* FPopStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopStatusBarView.m; sourceTree = "<group>"; };
-		DD3CE7F01741A52E0074FFEA /* battery-030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-030.png"; path = "Resources/battery-030.png"; sourceTree = "<group>"; };
 		DD3CE7F21742A9AC0074FFEA /* FPopConnectionStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopConnectionStatusPoller.h; sourceTree = "<group>"; };
 		DD3CE7F31742A9AC0074FFEA /* FPopConnectionStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopConnectionStatusPoller.m; sourceTree = "<group>"; };
 		DD3CE7F51742AA420074FFEA /* FPopConnectionStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopConnectionStatus.h; sourceTree = "<group>"; };
@@ -55,6 +61,16 @@
 		DD3CE7FE1742AFF40074FFEA /* FPopStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatusPoller.h; sourceTree = "<group>"; };
 		DD3CE7FF1742AFF40074FFEA /* FPopStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopStatusPoller.m; sourceTree = "<group>"; };
 		DD3CE8011742B1B20074FFEA /* FPopStatusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPopStatusUtils.h; sourceTree = "<group>"; };
+		DD3CE8021742B9D70074FFEA /* FPopBatteryStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopBatteryStatus.h; sourceTree = "<group>"; };
+		DD3CE8031742B9D70074FFEA /* FPopBatteryStatus.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FPopBatteryStatus.mm; sourceTree = "<group>"; };
+		DD3CE8071742BCD70074FFEA /* FPopTestBatteryStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopTestBatteryStatusPoller.h; sourceTree = "<group>"; };
+		DD3CE8081742BCD70074FFEA /* FPopTestBatteryStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopTestBatteryStatusPoller.m; sourceTree = "<group>"; };
+		DD82252A1742D35C006EFE04 /* battery-full-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-full-charging.png"; path = "Resources/battery-full-charging.png"; sourceTree = "<group>"; };
+		DD82252B1742D35C006EFE04 /* battery-full-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-full-normal.png"; path = "Resources/battery-full-normal.png"; sourceTree = "<group>"; };
+		DD82252C1742D35C006EFE04 /* battery-low-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-low-charging.png"; path = "Resources/battery-low-charging.png"; sourceTree = "<group>"; };
+		DD82252D1742D35C006EFE04 /* battery-low-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-low-normal.png"; path = "Resources/battery-low-normal.png"; sourceTree = "<group>"; };
+		DD82252E1742D35C006EFE04 /* battery-medium-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-medium-charging.png"; path = "Resources/battery-medium-charging.png"; sourceTree = "<group>"; };
+		DD82252F1742D35C006EFE04 /* battery-medium-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-medium-normal.png"; path = "Resources/battery-medium-normal.png"; sourceTree = "<group>"; };
 		DDD1D5CB173C1DFC0085FDC6 /* HardwareNetworkMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HardwareNetworkMonitor.h; sourceTree = "<group>"; };
 		DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HardwareNetworkMonitor.m; sourceTree = "<group>"; };
 		DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "network-gsm-full_18.png"; path = "Resources/network-gsm-full_18.png"; sourceTree = "<group>"; };
@@ -80,23 +96,17 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DD3CE7F81742AB980074FFEA /* FPopTestConnectionStatusPoller.h */,
-				DD3CE7F91742AB980074FFEA /* FPopTestConnectionStatusPoller.m */,
-				DD3CE7F51742AA420074FFEA /* FPopConnectionStatus.h */,
-				DD3CE7F61742AA420074FFEA /* FPopConnectionStatus.mm */,
-				DD3CE7F21742A9AC0074FFEA /* FPopConnectionStatusPoller.h */,
-				DD3CE7F31742A9AC0074FFEA /* FPopConnectionStatusPoller.m */,
+				DD3CE8011742B1B20074FFEA /* FPopStatusUtils.h */,
+				DD3CE7FE1742AFF40074FFEA /* FPopStatusPoller.h */,
+				DD3CE7FF1742AFF40074FFEA /* FPopStatusPoller.m */,
 				256AC3D80F4B6AC300CF3369 /* FPopStatusBarAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* FPopStatusBarAppDelegate.m */,
 				DDD1D5CB173C1DFC0085FDC6 /* HardwareNetworkMonitor.h */,
 				DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */,
 				DD3CE7ED173D8C3B0074FFEA /* FPopStatusBarView.h */,
 				DD3CE7EE173D8C3B0074FFEA /* FPopStatusBarView.m */,
-				DD3CE7FB1742AF890074FFEA /* FPopBatteryStatusPoller.h */,
-				DD3CE7FC1742AF890074FFEA /* FPopBatteryStatusPoller.m */,
-				DD3CE7FE1742AFF40074FFEA /* FPopStatusPoller.h */,
-				DD3CE7FF1742AFF40074FFEA /* FPopStatusPoller.m */,
-				DD3CE8011742B1B20074FFEA /* FPopStatusUtils.h */,
+				DD3CE8051742BC880074FFEA /* Connection Status */,
+				DD3CE8061742BC9F0074FFEA /* Battery Status */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -151,7 +161,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DD3CE7F01741A52E0074FFEA /* battery-030.png */,
+				DD82252A1742D35C006EFE04 /* battery-full-charging.png */,
+				DD82252B1742D35C006EFE04 /* battery-full-normal.png */,
+				DD82252C1742D35C006EFE04 /* battery-low-charging.png */,
+				DD82252D1742D35C006EFE04 /* battery-low-normal.png */,
+				DD82252E1742D35C006EFE04 /* battery-medium-charging.png */,
+				DD82252F1742D35C006EFE04 /* battery-medium-normal.png */,
 				DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */,
 				DDD1D5D2173D44920085FDC6 /* network-gsm-high_18.png */,
 				DDD1D5D3173D44920085FDC6 /* network-gsm-low_18.png */,
@@ -172,6 +187,32 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD3CE8051742BC880074FFEA /* Connection Status */ = {
+			isa = PBXGroup;
+			children = (
+				DD3CE7F81742AB980074FFEA /* FPopTestConnectionStatusPoller.h */,
+				DD3CE7F91742AB980074FFEA /* FPopTestConnectionStatusPoller.m */,
+				DD3CE7F51742AA420074FFEA /* FPopConnectionStatus.h */,
+				DD3CE7F61742AA420074FFEA /* FPopConnectionStatus.mm */,
+				DD3CE7F21742A9AC0074FFEA /* FPopConnectionStatusPoller.h */,
+				DD3CE7F31742A9AC0074FFEA /* FPopConnectionStatusPoller.m */,
+			);
+			name = "Connection Status";
+			sourceTree = "<group>";
+		};
+		DD3CE8061742BC9F0074FFEA /* Battery Status */ = {
+			isa = PBXGroup;
+			children = (
+				DD3CE7FB1742AF890074FFEA /* FPopBatteryStatusPoller.h */,
+				DD3CE7FC1742AF890074FFEA /* FPopBatteryStatusPoller.m */,
+				DD3CE8021742B9D70074FFEA /* FPopBatteryStatus.h */,
+				DD3CE8031742B9D70074FFEA /* FPopBatteryStatus.mm */,
+				DD3CE8071742BCD70074FFEA /* FPopTestBatteryStatusPoller.h */,
+				DD3CE8081742BCD70074FFEA /* FPopTestBatteryStatusPoller.m */,
+			);
+			name = "Battery Status";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +273,12 @@
 				DDD1D5DA173D44920085FDC6 /* network-gsm-medium_18.png in Resources */,
 				DDD1D5DB173D44920085FDC6 /* network-gsm-none_18.png in Resources */,
 				DDD1D5DC173D44920085FDC6 /* network-wireless-disconnected_18.png in Resources */,
-				DD3CE7F11741A52E0074FFEA /* battery-030.png in Resources */,
+				DD8225301742D35C006EFE04 /* battery-full-charging.png in Resources */,
+				DD8225311742D35C006EFE04 /* battery-full-normal.png in Resources */,
+				DD8225321742D35C006EFE04 /* battery-low-charging.png in Resources */,
+				DD8225331742D35C006EFE04 /* battery-low-normal.png in Resources */,
+				DD8225341742D35C006EFE04 /* battery-medium-charging.png in Resources */,
+				DD8225351742D35C006EFE04 /* battery-medium-normal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +298,8 @@
 				DD3CE7FA1742AB980074FFEA /* FPopTestConnectionStatusPoller.m in Sources */,
 				DD3CE7FD1742AF890074FFEA /* FPopBatteryStatusPoller.m in Sources */,
 				DD3CE8001742AFF40074FFEA /* FPopStatusPoller.m in Sources */,
+				DD3CE8041742B9D70074FFEA /* FPopBatteryStatus.mm in Sources */,
+				DD3CE8091742BCD70074FFEA /* FPopTestBatteryStatusPoller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

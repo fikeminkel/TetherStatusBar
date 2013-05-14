@@ -33,18 +33,14 @@ static NSArray *FPopConnectionStatusSignalTypeArray = [[NSArray alloc] initWithO
                         cinr];
     status.uptime = (NSString *)[data valueForKey:@"ID_WIMAX_CONN_TIME"];
     status.ipAddress = (NSString *)[data valueForKey:@"ID_WIMAX_IP_ADDR"];
-    
-//    NSLog(@"Current Signal Strength %@", cinr);
+
     if ([cinr isEqualToString: @"N/A"]) {
         status.signal = @"disconnected";
     } else {
         NSUInteger signalInt = [cinr intValue];
         signalInt = (int) signalInt/6;
-//        NSLog(@"Current converted strength: %d", (int) signalInt);
         status.signal = [FPopConnectionStatus stringFromSignalType:(FPopConnectionStatusSignalType) signalInt];
-    }
-//    NSLog(@"Converted Signal Strength %@", status.signal);
-    
+    }    
     return status;
 }
 

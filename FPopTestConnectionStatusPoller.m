@@ -10,7 +10,6 @@
         testdata = [[[NSMutableDictionary alloc] init] retain];
         testdataOptions = [[[NSArray alloc] initWithObjects:@"N/A", @"0", @"5", @"10", @"15", @"20", @"25", nil] retain];
         testdataCurrentOption = 0;
-
     }
     return self;
 }
