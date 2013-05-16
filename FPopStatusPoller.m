@@ -7,6 +7,7 @@
 {
     DLog(@"startPolling: %f", interval);
     if (!statusTimer) {
+        [self performSelector:@selector(checkStatus)];
         statusTimer = [[NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(checkStatus) userInfo:nil repeats:YES] retain];
     }
 }
@@ -46,13 +47,12 @@
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    NSLog(@"didReceiveResponse");
+    DLog(@"didReceiveResponse");
     responseData = [[[NSMutableData alloc] init] retain];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    NSLog(@"didReceiveData");
     [responseData appendData:data];
 }
 
@@ -63,8 +63,6 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"connectionDidFinishLoading");
-    NSLog(@"Succeeded! Received %ld bytes of data", (unsigned long)[responseData length]);
     NSError *myError = nil;
     NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&myError];
     jsonObj = [jsonObj objectForKey:@"data"];
@@ -74,7 +72,7 @@
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"connection didFailWithError %@", error);
+    DLog(@"connection didFailWithError %@", error);
 }
 
 

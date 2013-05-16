@@ -18,7 +18,8 @@ typedef enum {
 @property (retain) NSString *level;
 @property (retain) NSString *statusStr;
 
-+(FPopBatteryStatus *) FPopBatteryStatusWithData:(NSDictionary *)data;
++(FPopBatteryStatus *) statusWithData:(NSDictionary *)data;
++(FPopBatteryStatus *) unknownStatus;
 
 
 @end

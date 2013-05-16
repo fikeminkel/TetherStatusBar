@@ -8,7 +8,7 @@
     self = [super init];
     if (self) {
         testdata = [[[NSMutableDictionary alloc] init] retain];
-        testdataOptions = [[[NSArray alloc] initWithObjects:@"N/A", @"0", @"5", @"10", @"15", @"20", @"25", nil] retain];
+        testdataOptions = [[[NSArray alloc] initWithObjects:@"N/A", @"0", @"5", @"10", @"15", @"20", @"25", @"30", nil] retain];
         testdataCurrentOption = 0;
     }
     return self;
@@ -25,7 +25,7 @@
     [data setValue:[testdataOptions objectAtIndex:testdataCurrentOption] forKey:@"ID_WIMAX_CINR"];
     testdataCurrentOption = (testdataCurrentOption >= testdataOptions.count-1) ? 0 : testdataCurrentOption + 1;
     DLog(@"data: %@", data);
-    [delegate connectionStatusUpdated:[FPopConnectionStatus FPopConnectionStatusWithData:data]];
+    [delegate connectionStatusUpdated:[FPopConnectionStatus statusWithData:data]];
 }
 
 -(void) dealloc

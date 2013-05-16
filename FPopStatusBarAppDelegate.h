@@ -4,7 +4,8 @@
 #import "FPopBatteryStatusPoller.h"
 #import "FPopStatusBarView.h"
 
-#define FPopStatusBarAppDelege_POLL_INTERVAL 2.0
+#define FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL 2.0
+#define FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL 30.0
 
 @interface FPopStatusBarAppDelegate : NSObject <NSApplicationDelegate, FPopConnectionStatusPollerDelegate, FPopBatteryStatusPollerDelegate, HardwareNetworkMonitorDelegate> {
     NSApplication *app;

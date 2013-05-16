@@ -23,7 +23,7 @@
     [data setValue:testdataCurrentStatus forKey:@"STATUS"];
     testdataCurrentOption = (testdataCurrentOption >= testdataOptions.count-1) ? 0 : testdataCurrentOption + 1;
     DLog(@"data: %@", data);
-    [delegate batteryStatusUpdated:[FPopBatteryStatus FPopBatteryStatusWithData:data]];
+    [delegate batteryStatusUpdated:[FPopBatteryStatus statusWithData:data]];
 }
 
 -(void) dealloc

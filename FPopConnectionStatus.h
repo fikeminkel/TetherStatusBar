@@ -24,6 +24,7 @@ typedef enum {
 @property (retain) NSString *signal;
 @property (retain) NSString *ipAddress;
 
-+(FPopConnectionStatus *) FPopConnectionStatusWithData:(NSDictionary *)data;
++(FPopConnectionStatus *) statusWithData:(NSDictionary *)data;
++(FPopConnectionStatus *) disconnectedStatus;
 
 @end

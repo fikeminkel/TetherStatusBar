@@ -6,6 +6,8 @@
 @synthesize statusStr;
 
 static NSArray *FPopBatteryStatusLevelTypeArray = [[NSArray alloc] initWithObjects:kFPopBatteryStatusLevelTypeNamesArray];
+static NSDictionary *unknownData = [NSDictionary dictionaryWithObjectsAndKeys:@"unknown", @"STATUS", @"unknown", @"LEVEL", nil];
+
 
 +(NSString *) stringFromLevelType:(FPopBatteryStatusLevelType) type
 {
@@ -22,11 +24,9 @@ static NSArray *FPopBatteryStatusLevelTypeArray = [[NSArray alloc] initWithObjec
 }
 
 
-+(FPopBatteryStatus *) FPopBatteryStatusWithData:(NSDictionary *)data
++(FPopBatteryStatus *) statusWithData:(NSDictionary *)data
 {
     FPopBatteryStatus *status = [[[FPopBatteryStatus alloc] init] autorelease];
-    //LEVEL: "3"
-    //STATUS: "normal"
     status.status = [data objectForKey:@"STATUS"];
     NSInteger levelInt =  [(NSString *)[data objectForKey:@"LEVEL"] intValue];
     if (!status.status) {
@@ -36,6 +36,10 @@ static NSArray *FPopBatteryStatusLevelTypeArray = [[NSArray alloc] initWithObjec
     status.level =  [FPopBatteryStatus stringFromLevelType:(FPopBatteryStatusLevelType) levelInt];
     status.statusStr = [NSString stringWithFormat:@"%@-%@", status.level, status.status];
     return status;
+}
++(FPopBatteryStatus *) unknownStatus
+{
+    return [FPopBatteryStatus statusWithData:unknownData];
 }
 
 -(BOOL)isEqual:(id)other

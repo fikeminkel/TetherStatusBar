@@ -9,6 +9,13 @@
 @synthesize ipAddress;
 
 static NSArray *FPopConnectionStatusSignalTypeArray = [[NSArray alloc] initWithObjects:kFPopConnectionStatusSignalTypeNamesArray];
+static NSDictionary *disconnectedData = [NSDictionary dictionaryWithObjectsAndKeys:@"N/A", @"ID_WIMAX_CINR", @"UNKNOWN", @"ID_WIMAX_STATUS", @"N/A", @"ID_WIMAX_RSSI", @"0", @"ID_WIMAX_CONN_TIME", @"0.0.0.0", @"ID_WIMAX_IP_ADDR", nil];
+
+static NSArray *signalLevels = [NSArray arrayWithObjects:
+                                [NSNumber numberWithInt:6],
+                                [NSNumber numberWithInt:12],
+                                [NSNumber numberWithInt:18],
+                                [NSNumber numberWithInt:23], nil];
 
 +(NSString *) stringFromSignalType:(FPopConnectionStatusSignalType) type
 {
@@ -24,7 +31,17 @@ static NSArray *FPopConnectionStatusSignalTypeArray = [[NSArray alloc] initWithO
     return (FPopConnectionStatusSignalType) n;
 }
 
-+(FPopConnectionStatus *) FPopConnectionStatusWithData:(NSDictionary *)data {
++ (int) calcSignalLevel:(int) level
+{
+    for (NSInteger i = 0; i < [signalLevels count]; i++) {
+        if (level < [(NSNumber *) [signalLevels objectAtIndex:i] intValue]) {
+            return i;
+        }
+    }
+    return 4;
+}
+
++(FPopConnectionStatus *) statusWithData:(NSDictionary *)data {
     FPopConnectionStatus *status = [[[FPopConnectionStatus alloc] init] autorelease];
     status.status = [data valueForKey:@"ID_WIMAX_STATUS"];
     NSString* cinr = (NSString *)[data valueForKey:@"ID_WIMAX_CINR"];
@@ -37,11 +54,20 @@ static NSArray *FPopConnectionStatusSignalTypeArray = [[NSArray alloc] initWithO
     if (!cinr || [cinr isEqualToString: @"N/A"]) {
         status.signal = @"disconnected";
     } else {
-        NSUInteger signalInt = [cinr intValue];
-        signalInt = (int) signalInt/6;
+        int signalInt = [self calcSignalLevel:[cinr intValue]];
         status.signal = [FPopConnectionStatus stringFromSignalType:(FPopConnectionStatusSignalType) signalInt];
     }    
     return status;
+}
+
++(FPopConnectionStatus *) disconnectedStatus
+{
+    return [FPopConnectionStatus statusWithData:disconnectedData];
+}
+
+-(NSString *) description
+{
+    return [NSString stringWithFormat:@"FPopConnectionStatus: { status: %@, signalStr: %@, uptime: %@, signal: %@, ipAddress: %@}", status, signalStr, uptime, signal, ipAddress];
 }
 
 @end

@@ -22,10 +22,10 @@
     
 #ifdef SIMULATE_NETWORK
     connectionPoller = [[[FPopTestConnectionStatusPoller alloc] initWithDelegate:self] retain];
-    [connectionPoller startPolling:FPopStatusBarAppDelege_POLL_INTERVAL];
+    [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
 
     batteryPoller = [[[FPopTestBatteryStatusPoller alloc] initWithDelegate:self] retain];
-    [batteryPoller startPolling:FPopStatusBarAppDelege_POLL_INTERVAL];
+    [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
 #endif
     
 #ifndef SIMULATE_NETWORK
@@ -37,7 +37,7 @@
 }
 
 -(void)applicationWillTerminate:(NSNotification *)notification {
-    NSLog(@"applicationWillTerminate");
+    DLog(@"applicationWillTerminate");
     [connectionPoller stopPolling];
     [connectionPoller release];
     connectionPoller = nil;
@@ -69,13 +69,13 @@
 
 - (void) quitApplication
 {
-    NSLog(@"quitApplication");
+    DLog(@"quitApplication");
     [app terminate:self];
 }
 
 -(void) clearStatus
 {
-    // TODO: [self statusUpdated: disconnected batteryStatus:unknown];
+    [self statusUpdated:[FPopConnectionStatus disconnectedStatus] batteryStatus:[FPopBatteryStatus unknownStatus]];
 }
 
 -(void) statusUpdated:(FPopConnectionStatus *)connectionStatus batteryStatus:(FPopBatteryStatus *)batteryStatus
@@ -117,28 +117,28 @@
 }
 
 -(void) ethernetConnected:(NSString *)interfaceName description:(NSString *)description {
-    NSLog(@"ethernetConnected:%@, %@", interfaceName, description);
+    DLog(@"ethernetConnected:%@, %@", interfaceName, description);
 }
 
 -(void) ethernetDisconnected: (NSString *)interfaceName {
-    NSLog(@"ethernetDisconnected:%@", interfaceName);
+    DLog(@"ethernetDisconnected:%@", interfaceName);
 }
 
 -(void) wifiConnected:(NSString *)networkName {
-    NSLog(@"wifiConnected: %@", networkName);
-    [connectionPoller startPolling:FPopStatusBarAppDelege_POLL_INTERVAL];
-    [batteryPoller startPolling:FPopStatusBarAppDelege_POLL_INTERVAL];
+    DLog(@"wifiConnected: %@", networkName);
+    [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
+    [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
 }
 
 -(void) wifiDisconnected:(NSString *)networkName {
-    NSLog(@"wifiDisconnected: %@", networkName);
+    DLog(@"wifiDisconnected: %@", networkName);
     [connectionPoller stopPolling];
     [batteryPoller stopPolling];
     [self clearStatus];
 }
 
 -(void) ipAddressUpdated:(NSString *)ipAddress {
-    NSLog(@"ipAddressUpdated: %@", ipAddress);
+    DLog(@"ipAddressUpdated: %@", ipAddress);
 }
 
 
