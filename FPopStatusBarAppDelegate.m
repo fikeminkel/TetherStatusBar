@@ -54,6 +54,12 @@
     
     [lastBatteryStatus release];
     lastBatteryStatus = nil;
+    
+    [statusView release];
+    statusView = nil;
+    
+    [statusItem release];
+    statusItem = nil;
 }
 
 -(void)awakeFromNib
@@ -61,10 +67,12 @@
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setMenu:statusMenu];
     [statusItem setHighlightMode:YES];
-        
     NSMenuItem *quitItem = [statusMenu itemAtIndex:0];
     [quitItem setAction:@selector(quitApplication)];
-    
+    statusView = [[[FPopStatusBarView alloc] initWithFrame:NSMakeRect(0, 0, 32, 20)
+                                                   signal:[FPopConnectionStatus disconnectedStatus].signal
+                                                  battery:[FPopBatteryStatus unknownStatus].statusStr] retain];
+    [statusItem setView:statusView];
 }
 
 - (void) quitApplication
@@ -75,19 +83,8 @@
 
 -(void) clearStatus
 {
-    [self statusUpdated:[FPopConnectionStatus disconnectedStatus] batteryStatus:[FPopBatteryStatus unknownStatus]];
-}
-
--(void) statusUpdated:(FPopConnectionStatus *)connectionStatus batteryStatus:(FPopBatteryStatus *)batteryStatus
-{
-    if (connectionStatus && batteryStatus) {
-        [statusItem setView:nil];
-        DLog(@"batteryStatus statusStr:%@", batteryStatus.statusStr);
-        DLog(@"connectionStatus signal:%@", connectionStatus);
-        
-        FPopStatusBarView *statusView = [[FPopStatusBarView alloc] initWithFrame:NSMakeRect(0, 0, 32, 20) signal:connectionStatus.signal battery:batteryStatus.statusStr];
-        [statusItem setView:statusView];
-    }
+    [statusView updateBatteryStatus:[FPopBatteryStatus unknownStatus].statusStr];
+    [statusView updateConnectionStatus:[FPopConnectionStatus disconnectedStatus].signal];
 }
 
 -(void) connectionStatusUpdated:(FPopConnectionStatus *)connectionStatus
@@ -99,18 +96,18 @@
                            connectionStatus.uptime,
                            connectionStatus.ipAddress];    
     if (!lastConnectionStatus || ![lastConnectionStatus.signal isEqual:connectionStatus.signal]) {
-        [self statusUpdated:connectionStatus batteryStatus:lastBatteryStatus];
+        [statusView updateConnectionStatus:connectionStatus.signal];
         [lastConnectionStatus release];
         lastConnectionStatus = [connectionStatus retain];
     }
-    [[statusItem view] setToolTip:statusTxt];
+    [statusView setToolTip:statusTxt];
 }
 
 -(void) batteryStatusUpdated:(FPopBatteryStatus *)batteryStatus
 {
     DLog(@"batteryStatus %@", batteryStatus);
     if (!lastBatteryStatus || ![lastBatteryStatus isEqual:batteryStatus]) {
-        [self statusUpdated:lastConnectionStatus batteryStatus:batteryStatus];
+        [statusView updateBatteryStatus:batteryStatus.statusStr];
         [lastBatteryStatus release];
         lastBatteryStatus = [batteryStatus retain];
     }
