@@ -12,6 +12,7 @@
     NSWindow *window;
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
+    NSMenuItem *showBatteryUsageItem;
     FPopStatusBarView *statusView;
     FPopConnectionStatusPoller *connectionPoller;
     FPopConnectionStatus *lastConnectionStatus;

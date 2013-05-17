@@ -28,6 +28,7 @@
     if (statusTimer) {
         [statusTimer invalidate];
         [statusTimer release];
+        statusTimer = nil;
     }
 }
 

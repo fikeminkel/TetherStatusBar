@@ -6,7 +6,10 @@
 static NSMutableDictionary *statusImages;
 static NSMutableDictionary *batteryImages;
 
+
+
 @synthesize statusItem;
+@synthesize showBatteryImage = _showBatteryImage;
 
 -(NSImage *) resizedImageNamed:(NSString *) name size:(NSInteger) size
 {
@@ -20,12 +23,14 @@ static NSMutableDictionary *batteryImages;
     return image;
 }
 
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
+- (id)init {
+    frameWithBattery = NSMakeRect(0, 0, 36, 20);
+    frameWithoutBattery = NSMakeRect(0, 0, 22, 20);
+    self = [super initWithFrame:frameWithBattery];
     if (self) {
         [self initStatusImages];
         isHighlighted = NO;
+        _showBatteryImage = YES;
     }
     return self;
 }
@@ -44,8 +49,10 @@ static NSMutableDictionary *batteryImages;
 -(void) drawRect:(NSRect)rect
 {
     [statusItem drawStatusBarBackgroundInRect:[self bounds] withHighlight:isHighlighted];
-    [connectionImage drawAtPoint: NSMakePoint(0, 2) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
-    [batteryImage drawAtPoint:NSMakePoint(18, 2) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];    
+    [connectionImage drawAtPoint: NSMakePoint(2, 2) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+    if (_showBatteryImage) {
+        [batteryImage drawAtPoint:NSMakePoint(20, 2) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+    }
 }
 
 - (void)mouseDown:(NSEvent *)event
@@ -89,6 +96,17 @@ static NSMutableDictionary *batteryImages;
     connectionImage = [[statusImages objectForKey:signal] retain];
     [self setNeedsDisplay:YES];
 }
+
+-(void) setShowBatteryImage:(BOOL)showBatteryImage {
+    _showBatteryImage = showBatteryImage;
+    if (_showBatteryImage) {
+        [self setFrame:frameWithBattery];
+    } else {
+        [self setFrame:frameWithoutBattery];
+    }
+    [self setNeedsDisplay:YES];
+}
+
 
 -(void)dealloc
 {

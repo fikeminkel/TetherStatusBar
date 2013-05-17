@@ -58,6 +58,9 @@
     [statusView release];
     statusView = nil;
     
+    [showBatteryUsageItem release];
+    showBatteryUsageItem = nil;
+    
     [statusItem release];
     statusItem = nil;
 }
@@ -67,9 +70,15 @@
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     //[statusItem setMenu:statusMenu];
     [statusItem setHighlightMode:YES];
-    NSMenuItem *quitItem = [statusMenu itemAtIndex:0];
+    
+    showBatteryUsageItem = [[statusMenu itemAtIndex:0] retain];
+    [showBatteryUsageItem setState:NSOnState];
+    [showBatteryUsageItem setAction:@selector(showHideBatteryUsage)];
+    
+    NSMenuItem *quitItem = [statusMenu itemAtIndex:1];
     [quitItem setAction:@selector(quitApplication)];
-    statusView = [[[FPopStatusBarView alloc] initWithFrame:NSMakeRect(0, 0, 32, 20)] retain];
+    
+    statusView = [[[FPopStatusBarView alloc] init] retain];
     statusView.statusItem = statusItem;
     [statusItem setView:statusView];
     [statusView setMenu:statusMenu];
@@ -82,6 +91,21 @@
     DLog(@"quitApplication");
     [app terminate:self];
 }
+
+-(void) showHideBatteryUsage
+{
+    NSInteger currentState = [showBatteryUsageItem state];
+    if (currentState == NSOffState) {
+        [showBatteryUsageItem setState:NSOnState];
+        statusView.showBatteryImage = YES;
+        [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
+    } else {
+        [showBatteryUsageItem setState:NSOffState];
+        statusView.showBatteryImage = NO;
+        [batteryPoller stopPolling];
+    }
+}
+
 
 -(void) clearStatus
 {
