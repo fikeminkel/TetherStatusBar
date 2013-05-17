@@ -22,10 +22,10 @@
     
 #ifdef SIMULATE_NETWORK
     connectionPoller = [[[FPopTestConnectionStatusPoller alloc] initWithDelegate:self] retain];
-//    [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
+    [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
 
     batteryPoller = [[[FPopTestBatteryStatusPoller alloc] initWithDelegate:self] retain];
-//    [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
+    [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
 #endif
     
 #ifndef SIMULATE_NETWORK
