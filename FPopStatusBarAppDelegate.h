@@ -10,6 +10,7 @@
 @interface FPopStatusBarAppDelegate : NSObject <NSApplicationDelegate, FPopConnectionStatusPollerDelegate, FPopBatteryStatusPollerDelegate, HardwareNetworkMonitorDelegate> {
     NSApplication *app;
     NSWindow *window;
+    NSUserDefaults *userDefaults;
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
     NSMenuItem *showBatteryUsageItem;

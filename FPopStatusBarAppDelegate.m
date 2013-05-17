@@ -21,10 +21,10 @@
     [self clearStatus];
     
 #ifdef SIMULATE_NETWORK
-    connectionPoller = [[[FPopTestConnectionStatusPoller alloc] initWithDelegate:self] retain];
+    connectionPoller = [[FPopTestConnectionStatusPoller alloc] initWithDelegate:self];
     [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
-
-    batteryPoller = [[[FPopTestBatteryStatusPoller alloc] initWithDelegate:self] retain];
+    
+    batteryPoller = [[FPopTestBatteryStatusPoller alloc] initWithDelegate:self];
     [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
 #endif
     
@@ -63,6 +63,9 @@
     
     [statusItem release];
     statusItem = nil;
+    
+    [userDefaults release];
+    userDefaults = nil;
 }
 
 -(void)awakeFromNib
@@ -73,17 +76,24 @@
     
     showBatteryUsageItem = [[statusMenu itemAtIndex:0] retain];
     [showBatteryUsageItem setState:NSOnState];
-    [showBatteryUsageItem setAction:@selector(showHideBatteryUsage)];
+    [showBatteryUsageItem setAction:@selector(handleShowBatteryUsageAction)];
     
     NSMenuItem *quitItem = [statusMenu itemAtIndex:1];
     [quitItem setAction:@selector(quitApplication)];
     
-    statusView = [[[FPopStatusBarView alloc] init] retain];
+    statusView = [[FPopStatusBarView alloc] init];
     statusView.statusItem = statusItem;
     [statusItem setView:statusView];
     [statusView setMenu:statusMenu];
+    
+    userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+    BOOL show = [userDefaults boolForKey:@"showBatteryUsage"];
+    DLog(@"show: %d", show);
+    [self showHideBatteryUsage:show];
+
     [statusView updateConnectionStatus:[FPopConnectionStatus disconnectedStatus].signal];
     [statusView updateBatteryStatus:[FPopBatteryStatus unknownStatus].statusStr];
+    
 }
 
 - (void) quitApplication
@@ -92,10 +102,21 @@
     [app terminate:self];
 }
 
--(void) showHideBatteryUsage
+-(void) handleShowBatteryUsageAction
 {
     NSInteger currentState = [showBatteryUsageItem state];
-    if (currentState == NSOffState) {
+    BOOL show = (currentState == NSOffState);
+    DLog(@"show: %d", show);
+    
+    [userDefaults setBool:show forKey:@"showBatteryUsage"];
+    [userDefaults synchronize];
+    
+    [self showHideBatteryUsage:show];
+}
+
+-(void) showHideBatteryUsage:(BOOL)show
+{
+    if (show) {
         [showBatteryUsageItem setState:NSOnState];
         statusView.showBatteryImage = YES;
         [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];

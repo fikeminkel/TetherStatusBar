@@ -7,8 +7,8 @@
 {
     self = [super init];
     if (self) {
-        testdata = [[[NSMutableDictionary alloc] init] retain];
-        testdataOptions = [[[NSArray alloc] initWithObjects:@"N/A", @"0", @"5", @"10", @"15", @"20", @"25", @"30", nil] retain];
+        testdata = [[NSMutableDictionary alloc] init];
+        testdataOptions = [[NSArray alloc] initWithObjects:@"N/A", @"0", @"5", @"10", @"15", @"20", @"25", @"30", nil];
         testdataCurrentOption = 0;
     }
     return self;
@@ -24,7 +24,6 @@
     [data setValue:@"-72" forKey:@"ID_WIMAX_RSSI"];
     [data setValue:[testdataOptions objectAtIndex:testdataCurrentOption] forKey:@"ID_WIMAX_CINR"];
     testdataCurrentOption = (testdataCurrentOption >= testdataOptions.count-1) ? 0 : testdataCurrentOption + 1;
-    DLog(@"data: %@", data);
     [delegate connectionStatusUpdated:[FPopConnectionStatus statusWithData:data]];
 }
 

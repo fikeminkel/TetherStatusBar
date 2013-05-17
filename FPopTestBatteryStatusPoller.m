@@ -8,8 +8,8 @@
 {
     self = [super init];
     if (self) {
-        testdata = [[[NSMutableDictionary alloc] init] retain];
-        testdataOptions = [[[NSArray alloc] initWithObjects:@"1", @"2", @"3", nil] retain];
+        testdata = [[NSMutableDictionary alloc] init];
+        testdataOptions = [[NSArray alloc] initWithObjects:@"1", @"2", @"3", nil];
         testdataCurrentOption = 0;
     }
     return self;
@@ -22,7 +22,6 @@
     testdataCurrentStatus = [testdataCurrentStatus isEqual:@"normal"] ? @"charging" : @"normal";
     [data setValue:testdataCurrentStatus forKey:@"STATUS"];
     testdataCurrentOption = (testdataCurrentOption >= testdataOptions.count-1) ? 0 : testdataCurrentOption + 1;
-    DLog(@"data: %@", data);
     [delegate batteryStatusUpdated:[FPopBatteryStatus statusWithData:data]];
 }
 
