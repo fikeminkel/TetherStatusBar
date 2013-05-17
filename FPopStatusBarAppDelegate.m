@@ -22,10 +22,10 @@
     
 #ifdef SIMULATE_NETWORK
     connectionPoller = [[[FPopTestConnectionStatusPoller alloc] initWithDelegate:self] retain];
-    [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
+//    [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
 
     batteryPoller = [[[FPopTestBatteryStatusPoller alloc] initWithDelegate:self] retain];
-    [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
+//    [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
 #endif
     
 #ifndef SIMULATE_NETWORK
@@ -65,14 +65,16 @@
 -(void)awakeFromNib
 {
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-    [statusItem setMenu:statusMenu];
+    //[statusItem setMenu:statusMenu];
     [statusItem setHighlightMode:YES];
     NSMenuItem *quitItem = [statusMenu itemAtIndex:0];
     [quitItem setAction:@selector(quitApplication)];
-    statusView = [[[FPopStatusBarView alloc] initWithFrame:NSMakeRect(0, 0, 32, 20)
-                                                   signal:[FPopConnectionStatus disconnectedStatus].signal
-                                                  battery:[FPopBatteryStatus unknownStatus].statusStr] retain];
+    statusView = [[[FPopStatusBarView alloc] initWithFrame:NSMakeRect(0, 0, 32, 20)] retain];
+    statusView.statusItem = statusItem;
     [statusItem setView:statusView];
+    [statusView setMenu:statusMenu];
+    [statusView updateConnectionStatus:[FPopConnectionStatus disconnectedStatus].signal];
+    [statusView updateBatteryStatus:[FPopBatteryStatus unknownStatus].statusStr];
 }
 
 - (void) quitApplication

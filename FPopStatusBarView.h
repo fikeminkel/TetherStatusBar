@@ -1,14 +1,15 @@
 #import <Cocoa/Cocoa.h>
 
-@interface FPopStatusBarView : NSView {
+@interface FPopStatusBarView : NSView <NSMenuDelegate> {
     NSImage* connectionImage;
     NSImage* batteryImage;
     NSStatusItem* statusItem;
+    BOOL isHighlighted;
 }
 
 @property (retain) NSStatusItem* statusItem;
 
--(id) initWithFrame:(NSRect)frameRect signal:(NSString *) signal battery:(NSString *) battery;
+-(id) initWithFrame:(NSRect)frameRect;
 -(void) updateBatteryStatus: (NSString *) battery;
 -(void) updateConnectionStatus: (NSString *) signal;
 @end

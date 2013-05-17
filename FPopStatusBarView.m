@@ -20,15 +20,12 @@ static NSMutableDictionary *batteryImages;
     return image;
 }
 
-- (id)initWithFrame:(NSRect)frame signal:(NSString*) signal battery:(NSString*) battery
+- (id)initWithFrame:(NSRect)frame
 {
-    self = [self initWithFrame:frame];
+    self = [super initWithFrame:frame];
     if (self) {
         [self initStatusImages];
-        NSLog(@"FPopStatusBar initWithFrame: signal: %@ battery:%@", signal, battery);
-        connectionImage = [statusImages objectForKey:signal];
-        // TODO: do I need to make another dictionary mapping status to images?
-        batteryImage = [self resizedImageNamed:[NSString stringWithFormat:@"battery-%@.png",battery] size:16];
+        isHighlighted = NO;
     }
     return self;
 }
@@ -46,18 +43,36 @@ static NSMutableDictionary *batteryImages;
 }
 -(void) drawRect:(NSRect)rect
 {
-    DLog(@"drawing images: %@, %@", connectionImage, batteryImage);
-    [connectionImage drawAtPoint: NSMakePoint(0, 2) fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
-    [batteryImage drawAtPoint:NSMakePoint(18, 2) fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
-//    BOOL isHighlighted = [[self enclosingMenuItem] isHighlighted];
-//    DLog(@"isHighlighted: %c", isHighlighted);
-//    if (isHighlighted) {
-//        [[NSColor selectedMenuItemColor] set];
-//        [NSBezierPath fillRect:dirtyRect];
-//    } else {
-//        [super drawRect:dirtyRect];
-//    }
-    
+    [statusItem drawStatusBarBackgroundInRect:[self bounds] withHighlight:isHighlighted];
+    [connectionImage drawAtPoint: NSMakePoint(0, 2) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+    [batteryImage drawAtPoint:NSMakePoint(18, 2) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];    
+}
+
+- (void)mouseDown:(NSEvent *)event
+{
+    DLog(@"event: %@", event);
+    [[self menu] setDelegate:self];
+    [statusItem popUpStatusItemMenu:[self menu]];
+    [self setNeedsDisplay:YES];
+}
+
+- (void)rightMouseDown:(NSEvent *)event
+{
+    [self mouseDown:event];
+}
+
+- (void)menuWillOpen:(NSMenu *)menu
+{
+    DLog(@"menu: %@", menu);
+    isHighlighted = YES;
+    [self setNeedsDisplay:YES];
+}
+
+- (void)menuDidClose:(NSMenu *)menu
+{
+    isHighlighted = NO;
+    [[self menu] setDelegate:nil];
+    [self setNeedsDisplay:YES];
 }
 
 -(void) updateBatteryStatus:(NSString *)battery

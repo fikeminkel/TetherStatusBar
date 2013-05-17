@@ -9,7 +9,8 @@
 @synthesize ipAddress;
 
 static NSArray *FPopConnectionStatusSignalTypeArray = [[NSArray alloc] initWithObjects:kFPopConnectionStatusSignalTypeNamesArray];
-static NSDictionary *disconnectedData = [NSDictionary dictionaryWithObjectsAndKeys:@"N/A", @"ID_WIMAX_CINR", @"UNKNOWN", @"ID_WIMAX_STATUS", @"N/A", @"ID_WIMAX_RSSI", @"0", @"ID_WIMAX_CONN_TIME", @"0.0.0.0", @"ID_WIMAX_IP_ADDR", nil];
+static FPopConnectionStatus* disconnected = [FPopConnectionStatus statusWithData:
+    [NSDictionary dictionaryWithObjectsAndKeys:@"N/A", @"ID_WIMAX_CINR", @"UNKNOWN", @"ID_WIMAX_STATUS", @"N/A", @"ID_WIMAX_RSSI", @"0", @"ID_WIMAX_CONN_TIME", @"0.0.0.0", @"ID_WIMAX_IP_ADDR", nil]];
 
 static NSArray *signalLevels = [NSArray arrayWithObjects:
                                 [NSNumber numberWithInt:6],
@@ -62,7 +63,7 @@ static NSArray *signalLevels = [NSArray arrayWithObjects:
 
 +(FPopConnectionStatus *) disconnectedStatus
 {
-    return [FPopConnectionStatus statusWithData:disconnectedData];
+    return disconnected;
 }
 
 -(NSString *) description

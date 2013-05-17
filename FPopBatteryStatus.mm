@@ -6,7 +6,8 @@
 @synthesize statusStr;
 
 static NSArray *FPopBatteryStatusLevelTypeArray = [[NSArray alloc] initWithObjects:kFPopBatteryStatusLevelTypeNamesArray];
-static NSDictionary *unknownData = [NSDictionary dictionaryWithObjectsAndKeys:@"unknown", @"STATUS", @"unknown", @"LEVEL", nil];
+static FPopBatteryStatus *unknown = [FPopBatteryStatus statusWithData:
+                                    [NSDictionary dictionaryWithObjectsAndKeys:@"unknown", @"STATUS", @"unknown", @"LEVEL", nil]];
 
 
 +(NSString *) stringFromLevelType:(FPopBatteryStatusLevelType) type
@@ -39,7 +40,7 @@ static NSDictionary *unknownData = [NSDictionary dictionaryWithObjectsAndKeys:@"
 }
 +(FPopBatteryStatus *) unknownStatus
 {
-    return [FPopBatteryStatus statusWithData:unknownData];
+    return unknown;
 }
 
 -(BOOL)isEqual:(id)other
