@@ -164,6 +164,11 @@
 
 }
 
+-(void) deviceSSIDChanged:(NSString *)ssid
+{
+    DLog(@"ssid: %@", ssid);
+}
+
 #pragma mark -
 #pragma mark HardwareNetworkMonitorDelegate methods
 

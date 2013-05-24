@@ -20,6 +20,9 @@
 		DD3CE8001742AFF40074FFEA /* FPopStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7FF1742AFF40074FFEA /* FPopStatusPoller.m */; };
 		DD3CE8041742B9D70074FFEA /* FPopBatteryStatus.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE8031742B9D70074FFEA /* FPopBatteryStatus.mm */; };
 		DD3CE8091742BCD70074FFEA /* FPopTestBatteryStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE8081742BCD70074FFEA /* FPopTestBatteryStatusPoller.m */; };
+		DD5CB931174FC933009633EA /* WifiNetworkInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CB930174FC933009633EA /* WifiNetworkInfo.m */; };
+		DD5CB933174FCF07009633EA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5CB932174FCF07009633EA /* SystemConfiguration.framework */; };
+		DD5CB935174FCF13009633EA /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5CB934174FCF13009633EA /* CoreWLAN.framework */; };
 		DD8225301742D35C006EFE04 /* battery-full-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252A1742D35C006EFE04 /* battery-full-charging.png */; };
 		DD8225311742D35C006EFE04 /* battery-full-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252B1742D35C006EFE04 /* battery-full-normal.png */; };
 		DD8225321742D35C006EFE04 /* battery-low-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252C1742D35C006EFE04 /* battery-low-charging.png */; };
@@ -71,6 +74,10 @@
 		DD3CE8031742B9D70074FFEA /* FPopBatteryStatus.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FPopBatteryStatus.mm; sourceTree = "<group>"; };
 		DD3CE8071742BCD70074FFEA /* FPopTestBatteryStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopTestBatteryStatusPoller.h; sourceTree = "<group>"; };
 		DD3CE8081742BCD70074FFEA /* FPopTestBatteryStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopTestBatteryStatusPoller.m; sourceTree = "<group>"; };
+		DD5CB92F174FC933009633EA /* WifiNetworkInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WifiNetworkInfo.h; sourceTree = "<group>"; };
+		DD5CB930174FC933009633EA /* WifiNetworkInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WifiNetworkInfo.m; sourceTree = "<group>"; };
+		DD5CB932174FCF07009633EA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DD5CB934174FCF13009633EA /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
 		DD82252A1742D35C006EFE04 /* battery-full-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-full-charging.png"; path = "Resources/battery-full-charging.png"; sourceTree = "<group>"; };
 		DD82252B1742D35C006EFE04 /* battery-full-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-full-normal.png"; path = "Resources/battery-full-normal.png"; sourceTree = "<group>"; };
 		DD82252C1742D35C006EFE04 /* battery-low-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-low-charging.png"; path = "Resources/battery-low-charging.png"; sourceTree = "<group>"; };
@@ -103,6 +110,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				DD5CB933174FCF07009633EA /* SystemConfiguration.framework in Frameworks */,
+				DD5CB935174FCF13009633EA /* CoreWLAN.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,8 +126,7 @@
 				DD3CE7FF1742AFF40074FFEA /* FPopStatusPoller.m */,
 				256AC3D80F4B6AC300CF3369 /* FPopStatusBarAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* FPopStatusBarAppDelegate.m */,
-				DDD1D5CB173C1DFC0085FDC6 /* HardwareNetworkMonitor.h */,
-				DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */,
+				DD5CB92E174FC8DC009633EA /* Network */,
 				DD3CE7ED173D8C3B0074FFEA /* FPopStatusBarView.h */,
 				DD3CE7EE173D8C3B0074FFEA /* FPopStatusBarView.m */,
 				DD3CE8051742BC880074FFEA /* Connection Status */,
@@ -157,6 +165,8 @@
 		29B97314FDCFA39411CA2CEA /* StatusBarApp */ = {
 			isa = PBXGroup;
 			children = (
+				DD5CB934174FCF13009633EA /* CoreWLAN.framework */,
+				DD5CB932174FCF07009633EA /* SystemConfiguration.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -231,6 +241,17 @@
 				DD3CE8081742BCD70074FFEA /* FPopTestBatteryStatusPoller.m */,
 			);
 			name = "Battery Status";
+			sourceTree = "<group>";
+		};
+		DD5CB92E174FC8DC009633EA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DDD1D5CB173C1DFC0085FDC6 /* HardwareNetworkMonitor.h */,
+				DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */,
+				DD5CB92F174FC933009633EA /* WifiNetworkInfo.h */,
+				DD5CB930174FC933009633EA /* WifiNetworkInfo.m */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 		DD822542174ADA62006EFE04 /* Preferences */ = {
@@ -340,6 +361,7 @@
 				DD822540174AD9BE006EFE04 /* GeneralPreferencesViewController.m in Sources */,
 				DD822548174ADAC1006EFE04 /* MASPreferencesWindowController.m in Sources */,
 				DD82254B174C3218006EFE04 /* PreferencesController.m in Sources */,
+				DD5CB931174FC933009633EA /* WifiNetworkInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +400,7 @@
 				GCC_PREFIX_HEADER = FPopStatusBar_Prefix.pch;
 				INFOPLIST_FILE = "FPopStatusBar-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = FPopStatusBar;
 				SDKROOT = macosx10.7;
 			};
@@ -394,6 +417,7 @@
 				GCC_PREFIX_HEADER = FPopStatusBar_Prefix.pch;
 				INFOPLIST_FILE = "FPopStatusBar-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = FPopStatusBar;
 				SDKROOT = macosx10.7;
 			};
@@ -468,6 +492,7 @@
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "SIMULATE_NETWORK=1";
 				INFOPLIST_FILE = "FPopStatusBar-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = FPopStatusBar;
 				SDKROOT = macosx10.7;
 			};

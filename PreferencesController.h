@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+#define GENERAL_PREFS_DEVICE_SSID @"ssid"
 #define GENERAL_PREFS_SHOW_BATTERY_USAGE @"showBatteryUsage"
 #define GENERAL_PREFS_SHOW_SIGNAL_STRENGTH @"showSignalStrength"
 
@@ -7,6 +8,7 @@
 @protocol PreferencesControllerDelegate
 -(void) showBatteryUsageChanged:(BOOL)show;
 -(void) showSignalStrengthChanged:(BOOL)show;
+-(void) deviceSSIDChanged:(NSString *)ssid;
 @end
 
 @interface PreferencesController : NSObject
