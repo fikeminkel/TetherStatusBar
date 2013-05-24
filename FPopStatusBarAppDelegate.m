@@ -11,9 +11,10 @@
 #import "FPopConnectionStatus.h"
 #import "FPopStatusBarView.h"
 
-@implementation FPopStatusBarAppDelegate
+#import "MASPreferencesWindowController.h"
+#import "GeneralPreferencesViewController.h"
 
-@synthesize window;
+@implementation FPopStatusBarAppDelegate
 
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -58,73 +59,60 @@
     [statusView release];
     statusView = nil;
     
-    [showBatteryUsageItem release];
-    showBatteryUsageItem = nil;
+//    [showBatteryUsageItem release];
+//    showBatteryUsageItem = nil;
     
     [statusItem release];
     statusItem = nil;
     
-    [userDefaults release];
-    userDefaults = nil;
+    [prefsController release];
+    prefsController = nil;
 }
 
 -(void)awakeFromNib
 {
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-    //[statusItem setMenu:statusMenu];
-    [statusItem setHighlightMode:YES];
-    
-    showBatteryUsageItem = [[statusMenu itemAtIndex:0] retain];
-    [showBatteryUsageItem setState:NSOnState];
-    [showBatteryUsageItem setAction:@selector(handleShowBatteryUsageAction)];
-    
-    NSMenuItem *quitItem = [statusMenu itemAtIndex:1];
-    [quitItem setAction:@selector(quitApplication)];
     
     statusView = [[FPopStatusBarView alloc] init];
     statusView.statusItem = statusItem;
     [statusItem setView:statusView];
     [statusView setMenu:statusMenu];
-    
-    userDefaults = [[NSUserDefaults standardUserDefaults] retain];
-    BOOL show = [userDefaults boolForKey:@"showBatteryUsage"];
-    DLog(@"show: %d", show);
-    [self showHideBatteryUsage:show];
 
     [statusView updateConnectionStatus:[FPopConnectionStatus disconnectedStatus].signal];
     [statusView updateBatteryStatus:[FPopBatteryStatus unknownStatus].statusStr];
-    
+
+    prefsController = [[PreferencesController alloc] initWithDelegate:self];
+    [self showHideBatteryUsage:prefsController.showBatteryUsage];
 }
 
-- (void) quitApplication
+-(IBAction)quitApplication:(id)sender
 {
     DLog(@"quitApplication");
     [app terminate:self];
 }
 
--(void) handleShowBatteryUsageAction
-{
-    NSInteger currentState = [showBatteryUsageItem state];
-    BOOL show = (currentState == NSOffState);
-    DLog(@"show: %d", show);
-    
-    [userDefaults setBool:show forKey:@"showBatteryUsage"];
-    [userDefaults synchronize];
-    
-    [self showHideBatteryUsage:show];
-}
+//-(IBAction)showHideBatteryUsageAction:(id)sender
+//{
+//    prefsController.showBatteryUsage = !prefsController.showBatteryUsage;
+//    [self showHideBatteryUsage:prefsController.showBatteryUsage];
+//}
 
 -(void) showHideBatteryUsage:(BOOL)show
 {
     if (show) {
-        [showBatteryUsageItem setState:NSOnState];
+//        [showBatteryUsageItem setState:NSOnState];
         statusView.showBatteryImage = YES;
         [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
     } else {
-        [showBatteryUsageItem setState:NSOffState];
+//        [showBatteryUsageItem setState:NSOffState];
         statusView.showBatteryImage = NO;
         [batteryPoller stopPolling];
     }
+}
+
+-(IBAction)showPreferencesPanel:(id)sender
+{
+    [prefsController showPreferencesPanel:self];
 }
 
 
@@ -134,9 +122,10 @@
     [statusView updateConnectionStatus:[FPopConnectionStatus disconnectedStatus].signal];
 }
 
+#pragma mark -
+#pragma mark FPopConnectionStatusPollerDelegate methods
 -(void) connectionStatusUpdated:(FPopConnectionStatus *)connectionStatus
 {
-    DLog(@"connectionStatus: %@", connectionStatus);
     NSString *statusTxt = [NSString stringWithFormat:@"Status:%@\nSignal:%@\nUptime:%@\nIP Address:%@",
                            connectionStatus.status,
                            connectionStatus.signalStr,
@@ -150,15 +139,33 @@
     [statusView setToolTip:statusTxt];
 }
 
+#pragma mark -
+#pragma mark FPopBatteryStatusPollerDelegate methods
 -(void) batteryStatusUpdated:(FPopBatteryStatus *)batteryStatus
 {
-    DLog(@"batteryStatus %@", batteryStatus);
     if (!lastBatteryStatus || ![lastBatteryStatus isEqual:batteryStatus]) {
         [statusView updateBatteryStatus:batteryStatus.statusStr];
         [lastBatteryStatus release];
         lastBatteryStatus = [batteryStatus retain];
     }
 }
+
+
+
+#pragma mark -
+#pragma mark PreferencesControllerDelegate methods
+-(void) showBatteryUsageChanged:(BOOL)show
+{
+    [self showHideBatteryUsage:show];
+}
+
+-(void) showSignalStrengthChanged:(BOOL)show
+{
+
+}
+
+#pragma mark -
+#pragma mark HardwareNetworkMonitorDelegate methods
 
 -(void) ethernetConnected:(NSString *)interfaceName description:(NSString *)description {
     DLog(@"ethernetConnected:%@, %@", interfaceName, description);

@@ -27,6 +27,11 @@
 		DD8225341742D35C006EFE04 /* battery-medium-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252E1742D35C006EFE04 /* battery-medium-charging.png */; };
 		DD8225351742D35C006EFE04 /* battery-medium-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252F1742D35C006EFE04 /* battery-medium-normal.png */; };
 		DD8225371742F332006EFE04 /* battery-unknown-unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8225361742F332006EFE04 /* battery-unknown-unknown.png */; };
+		DD822540174AD9BE006EFE04 /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD82253E174AD9BD006EFE04 /* GeneralPreferencesViewController.m */; };
+		DD822541174AD9BE006EFE04 /* GeneralPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD82253F174AD9BE006EFE04 /* GeneralPreferencesViewController.xib */; };
+		DD822547174ADAC1006EFE04 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD822544174ADAC1006EFE04 /* MASPreferencesWindow.xib */; };
+		DD822548174ADAC1006EFE04 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD822546174ADAC1006EFE04 /* MASPreferencesWindowController.m */; };
+		DD82254B174C3218006EFE04 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD82254A174C3218006EFE04 /* PreferencesController.m */; };
 		DDD1D5CD173C1DFC0085FDC6 /* HardwareNetworkMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */; };
 		DDD1D5D7173D44920085FDC6 /* network-gsm-full_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */; };
 		DDD1D5D8173D44920085FDC6 /* network-gsm-high_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D2173D44920085FDC6 /* network-gsm-high_18.png */; };
@@ -73,6 +78,15 @@
 		DD82252E1742D35C006EFE04 /* battery-medium-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-medium-charging.png"; path = "Resources/battery-medium-charging.png"; sourceTree = "<group>"; };
 		DD82252F1742D35C006EFE04 /* battery-medium-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-medium-normal.png"; path = "Resources/battery-medium-normal.png"; sourceTree = "<group>"; };
 		DD8225361742F332006EFE04 /* battery-unknown-unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-unknown-unknown.png"; path = "Resources/battery-unknown-unknown.png"; sourceTree = "<group>"; };
+		DD82253D174AD9BD006EFE04 /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
+		DD82253E174AD9BD006EFE04 /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; };
+		DD82253F174AD9BE006EFE04 /* GeneralPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencesViewController.xib; sourceTree = "<group>"; };
+		DD822543174ADAC1006EFE04 /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
+		DD822544174ADAC1006EFE04 /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
+		DD822545174ADAC1006EFE04 /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
+		DD822546174ADAC1006EFE04 /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
+		DD822549174C3218006EFE04 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
+		DD82254A174C3218006EFE04 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		DDD1D5CB173C1DFC0085FDC6 /* HardwareNetworkMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HardwareNetworkMonitor.h; sourceTree = "<group>"; };
 		DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HardwareNetworkMonitor.m; sourceTree = "<group>"; };
 		DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "network-gsm-full_18.png"; path = "Resources/network-gsm-full_18.png"; sourceTree = "<group>"; };
@@ -109,6 +123,7 @@
 				DD3CE7EE173D8C3B0074FFEA /* FPopStatusBarView.m */,
 				DD3CE8051742BC880074FFEA /* Connection Status */,
 				DD3CE8061742BC9F0074FFEA /* Battery Status */,
+				DD822542174ADA62006EFE04 /* Preferences */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -218,6 +233,22 @@
 			name = "Battery Status";
 			sourceTree = "<group>";
 		};
+		DD822542174ADA62006EFE04 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				DD822543174ADAC1006EFE04 /* MASPreferencesViewController.h */,
+				DD822544174ADAC1006EFE04 /* MASPreferencesWindow.xib */,
+				DD822545174ADAC1006EFE04 /* MASPreferencesWindowController.h */,
+				DD822546174ADAC1006EFE04 /* MASPreferencesWindowController.m */,
+				DD82253D174AD9BD006EFE04 /* GeneralPreferencesViewController.h */,
+				DD82253E174AD9BD006EFE04 /* GeneralPreferencesViewController.m */,
+				DD82253F174AD9BE006EFE04 /* GeneralPreferencesViewController.xib */,
+				DD822549174C3218006EFE04 /* PreferencesController.h */,
+				DD82254A174C3218006EFE04 /* PreferencesController.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -283,6 +314,8 @@
 				DD8225341742D35C006EFE04 /* battery-medium-charging.png in Resources */,
 				DD8225351742D35C006EFE04 /* battery-medium-normal.png in Resources */,
 				DD8225371742F332006EFE04 /* battery-unknown-unknown.png in Resources */,
+				DD822541174AD9BE006EFE04 /* GeneralPreferencesViewController.xib in Resources */,
+				DD822547174ADAC1006EFE04 /* MASPreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +337,9 @@
 				DD3CE8001742AFF40074FFEA /* FPopStatusPoller.m in Sources */,
 				DD3CE8041742B9D70074FFEA /* FPopBatteryStatus.mm in Sources */,
 				DD3CE8091742BCD70074FFEA /* FPopTestBatteryStatusPoller.m in Sources */,
+				DD822540174AD9BE006EFE04 /* GeneralPreferencesViewController.m in Sources */,
+				DD822548174ADAC1006EFE04 /* MASPreferencesWindowController.m in Sources */,
+				DD82254B174C3218006EFE04 /* PreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

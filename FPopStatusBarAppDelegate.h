@@ -3,17 +3,18 @@
 #import "FPopConnectionStatusPoller.h"
 #import "FPopBatteryStatusPoller.h"
 #import "FPopStatusBarView.h"
+#import "PreferencesController.h"
 
 #define FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL 2.0
 #define FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL 30.0
 
-@interface FPopStatusBarAppDelegate : NSObject <NSApplicationDelegate, FPopConnectionStatusPollerDelegate, FPopBatteryStatusPollerDelegate, HardwareNetworkMonitorDelegate> {
+@interface FPopStatusBarAppDelegate : NSObject <NSApplicationDelegate, FPopConnectionStatusPollerDelegate, FPopBatteryStatusPollerDelegate, HardwareNetworkMonitorDelegate, PreferencesControllerDelegate> {
     NSApplication *app;
-    NSWindow *window;
-    NSUserDefaults *userDefaults;
-    IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
-    NSMenuItem *showBatteryUsageItem;
+    IBOutlet NSMenu *statusMenu;
+//    IBOutlet NSMenuItem *showBatteryUsageItem;
+    PreferencesController *prefsController;
+
     FPopStatusBarView *statusView;
     FPopConnectionStatusPoller *connectionPoller;
     FPopConnectionStatus *lastConnectionStatus;
@@ -22,7 +23,9 @@
     HardwareNetworkMonitor *networkMonitor;
 }
 
-@property (assign) IBOutlet NSWindow *window;
+-(IBAction)showPreferencesPanel:(id)sender;
+-(IBAction)quitApplication:(id)sender;
+//-(IBAction)showHideBatteryUsageAction:(id)sender;
 
 
 -(void) connectionStatusUpdated:(FPopConnectionStatus *)status;
