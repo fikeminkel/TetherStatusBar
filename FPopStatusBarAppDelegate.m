@@ -1,5 +1,6 @@
 #import "FPopStatusUtils.h"
 #import "HardwareNetworkMonitor.h"
+#import "TestHardwareNetworkMonitor.h"
 
 #import "FPopStatusBarAppDelegate.h"
 #import "FPopBatteryStatusPoller.h"
@@ -19,22 +20,22 @@
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     app = (NSApplication *)aNotification.object;
-    [self clearStatus];
     
 #ifdef SIMULATE_NETWORK
     connectionPoller = [[FPopTestConnectionStatusPoller alloc] initWithDelegate:self];
-    [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
-    
     batteryPoller = [[FPopTestBatteryStatusPoller alloc] initWithDelegate:self];
-    [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
+    networkMonitor = [[TestHardwareNetworkMonitor alloc] initWithDelegate:self];
 #endif
     
 #ifndef SIMULATE_NETWORK
-    connectionPoller = [[[FPopConnectionStatusPoller alloc] initWithDelegate:self] retain];
-    batteryPoller = [[[FPopBatteryStatusPoller alloc] initWithDelegate:self] retain];
-    networkMonitor = [[[HardwareNetworkMonitor alloc] initWithDelegate:self] retain];
-    [networkMonitor fireOnLaunch];
+    connectionPoller = [[FPopConnectionStatusPoller alloc] initWithDelegate:self];
+    batteryPoller = [[FPopBatteryStatusPoller alloc] initWithDelegate:self];
+    networkMonitor = [[HardwareNetworkMonitor alloc] initWithDelegate:self];
 #endif
+    [self stopPolling];
+
+    [networkMonitor startObserving];
+    [networkMonitor fireOnLaunch];
 }
 
 -(void)applicationWillTerminate:(NSNotification *)notification {
@@ -56,11 +57,11 @@
     [lastBatteryStatus release];
     lastBatteryStatus = nil;
     
+    [currentSSID release];
+    currentSSID = nil;
+    
     [statusView release];
     statusView = nil;
-    
-//    [showBatteryUsageItem release];
-//    showBatteryUsageItem = nil;
     
     [statusItem release];
     statusItem = nil;
@@ -91,21 +92,13 @@
     [app terminate:self];
 }
 
-//-(IBAction)showHideBatteryUsageAction:(id)sender
-//{
-//    prefsController.showBatteryUsage = !prefsController.showBatteryUsage;
-//    [self showHideBatteryUsage:prefsController.showBatteryUsage];
-//}
 
 -(void) showHideBatteryUsage:(BOOL)show
 {
+    statusView.showBatteryImage = show;
     if (show) {
-//        [showBatteryUsageItem setState:NSOnState];
-        statusView.showBatteryImage = YES;
         [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
     } else {
-//        [showBatteryUsageItem setState:NSOffState];
-        statusView.showBatteryImage = NO;
         [batteryPoller stopPolling];
     }
 }
@@ -116,10 +109,19 @@
 }
 
 
--(void) clearStatus
+-(void) stopPolling
 {
+    [connectionPoller stopPolling];
+    [batteryPoller stopPolling];
+
     [statusView updateBatteryStatus:[FPopBatteryStatus unknownStatus].statusStr];
     [statusView updateConnectionStatus:[FPopConnectionStatus disconnectedStatus].signal];
+}
+
+-(void) startPolling
+{
+    [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
+    [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];   
 }
 
 #pragma mark -
@@ -166,7 +168,15 @@
 
 -(void) deviceSSIDChanged:(NSString *)ssid
 {
-    DLog(@"ssid: %@", ssid);
+    DLog(@"ssid: %@, currentSSID: %@", ssid, currentSSID);
+    if (currentSSID) {
+        // if new pref setting is empty always poll
+        if (!ssid || [ssid isEqual:currentSSID]) {
+            [self startPolling];
+        } else {
+            [self stopPolling];
+        }
+    }
 }
 
 #pragma mark -
@@ -180,17 +190,29 @@
     DLog(@"ethernetDisconnected:%@", interfaceName);
 }
 
--(void) wifiConnected:(NSString *)networkName {
-    DLog(@"wifiConnected: %@", networkName);
-    [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
-    [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
+-(void) wifiConnected:(NSString *)ssid {
+    DLog(@"wifiConnected: %@", ssid);
+    // this should handle if an ssid pref is set and the wifi network changes
+    if (![ssid isEqual:currentSSID]) {
+        [currentSSID release];
+        currentSSID = [ssid retain];
+        // if there isn't a preferred ssid, always poll
+        if (!prefsController.ssid) {
+            DLog(@"no preferred ssid, start polling");
+            [self startPolling];
+        } else if ([prefsController.ssid isEqual:currentSSID]) {
+            DLog(@"'%@' matches '%@', start polling", ssid, prefsController.ssid);
+            [self startPolling];
+        } else {
+            DLog(@"'%@' doesn't match '%@', stop polling", ssid, prefsController.ssid);
+            [self stopPolling];
+        }
+    }
 }
 
--(void) wifiDisconnected:(NSString *)networkName {
-    DLog(@"wifiDisconnected: %@", networkName);
-    [connectionPoller stopPolling];
-    [batteryPoller stopPolling];
-    [self clearStatus];
+-(void) wifiDisconnected:(NSString *)ssid {
+    DLog(@"wifiDisconnected: %@", ssid);
+    [self stopPolling];
 }
 
 -(void) ipAddressUpdated:(NSString *)ipAddress {

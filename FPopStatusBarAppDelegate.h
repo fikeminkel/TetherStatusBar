@@ -12,7 +12,6 @@
     NSApplication *app;
     NSStatusItem *statusItem;
     IBOutlet NSMenu *statusMenu;
-//    IBOutlet NSMenuItem *showBatteryUsageItem;
     PreferencesController *prefsController;
 
     FPopStatusBarView *statusView;
@@ -21,6 +20,8 @@
     FPopBatteryStatusPoller *batteryPoller;
     FPopBatteryStatus *lastBatteryStatus;
     HardwareNetworkMonitor *networkMonitor;
+    
+    NSString *currentSSID;
 }
 
 -(IBAction)showPreferencesPanel:(id)sender;

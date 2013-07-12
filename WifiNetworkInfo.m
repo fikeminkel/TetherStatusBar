@@ -6,7 +6,6 @@
 
 +(NSArray *) allKnownNetworks
 {
-
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:50];
     CWInterface *interface = [CWInterface interface];
     DLog(@"interface: %@", interface);

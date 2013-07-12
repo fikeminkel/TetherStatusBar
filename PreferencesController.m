@@ -1,5 +1,6 @@
 #import "PreferencesController.h"
 #import "GeneralPreferencesViewController.h"
+#import "TestPreferencesViewController.h"
 #import "MASPreferencesWindowController.h"
 #import "FPopStatusUtils.h"
 
@@ -24,8 +25,13 @@
 
 -(void)showPreferencesPanel:(id)sender {
     if (!preferencesWindow) {
+
         GeneralPreferencesViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithPrefsController:self];
-        NSArray *views = [NSArray arrayWithObjects:generalViewController, nil];
+        NSMutableArray *views = [NSMutableArray arrayWithObjects:generalViewController, nil];
+#ifdef SIMULATE_NETWORK
+        TestPreferencesViewController *testViewController = [[TestPreferencesViewController alloc] initWithPrefsController:self];
+        [views addObject:testViewController];n
+#endif
         preferencesWindow = [[MASPreferencesWindowController alloc] initWithViewControllers:views title:@"Preferences"];
         preferencesWindow.window.level = NSModalPanelWindowLevel;
     }

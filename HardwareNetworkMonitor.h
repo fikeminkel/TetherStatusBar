@@ -27,5 +27,6 @@
 @property (retain) id <HardwareNetworkMonitorDelegate> delegate;
 
 -(id)initWithDelegate:(id) theDelegate;
+-(id)startObserving;
 -(void)fireOnLaunch;
 @end

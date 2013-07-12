@@ -79,8 +79,6 @@ typedef enum {
     if((self = [super init])){
         self.previousIPCombined = nil;
         self.networkInterfaceStates = [NSMutableDictionary dictionary];
-        
-        [self startObserving];
     }
     return self;
 }
@@ -134,7 +132,7 @@ typedef enum {
     CFRelease(rlSrc);
 }
 
--(void)startObserving
+-(id)startObserving
 {
     [self setupDynamicStore];
     
@@ -146,6 +144,7 @@ typedef enum {
         CFRelease(dynStore);
         dynStore = NULL;
     }
+    return self;
 }
 
 -(void)updateInterface:(NSString*)interface forType:(NetworkInterfaceType)type withStatus:(NSDictionary*)status {

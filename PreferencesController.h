@@ -4,6 +4,9 @@
 #define GENERAL_PREFS_SHOW_BATTERY_USAGE @"showBatteryUsage"
 #define GENERAL_PREFS_SHOW_SIGNAL_STRENGTH @"showSignalStrength"
 
+#define TEST_PREFS_SSID @"test_ssid"
+#define TEST_PREFS_WIRELESS_CONNECTED @"test_wirelessConnected"
+
 // TODO: add protocol for notifying AppDelegate of prefs changes
 @protocol PreferencesControllerDelegate
 -(void) showBatteryUsageChanged:(BOOL)show;

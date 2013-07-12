@@ -23,6 +23,9 @@
 		DD5CB931174FC933009633EA /* WifiNetworkInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CB930174FC933009633EA /* WifiNetworkInfo.m */; };
 		DD5CB933174FCF07009633EA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5CB932174FCF07009633EA /* SystemConfiguration.framework */; };
 		DD5CB935174FCF13009633EA /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5CB934174FCF13009633EA /* CoreWLAN.framework */; };
+		DD5CB9381755684A009633EA /* TestHardwareNetworkMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CB9371755684A009633EA /* TestHardwareNetworkMonitor.m */; };
+		DD5CB93C17594FC7009633EA /* TestPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CB93A17594FC7009633EA /* TestPreferencesViewController.m */; };
+		DD5CB93D17594FC7009633EA /* TestPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5CB93B17594FC7009633EA /* TestPreferencesViewController.xib */; };
 		DD8225301742D35C006EFE04 /* battery-full-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252A1742D35C006EFE04 /* battery-full-charging.png */; };
 		DD8225311742D35C006EFE04 /* battery-full-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252B1742D35C006EFE04 /* battery-full-normal.png */; };
 		DD8225321742D35C006EFE04 /* battery-low-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252C1742D35C006EFE04 /* battery-low-charging.png */; };
@@ -78,6 +81,11 @@
 		DD5CB930174FC933009633EA /* WifiNetworkInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WifiNetworkInfo.m; sourceTree = "<group>"; };
 		DD5CB932174FCF07009633EA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DD5CB934174FCF13009633EA /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
+		DD5CB9361755684A009633EA /* TestHardwareNetworkMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHardwareNetworkMonitor.h; sourceTree = "<group>"; };
+		DD5CB9371755684A009633EA /* TestHardwareNetworkMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHardwareNetworkMonitor.m; sourceTree = "<group>"; };
+		DD5CB93917594FC7009633EA /* TestPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPreferencesViewController.h; sourceTree = "<group>"; };
+		DD5CB93A17594FC7009633EA /* TestPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPreferencesViewController.m; sourceTree = "<group>"; };
+		DD5CB93B17594FC7009633EA /* TestPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestPreferencesViewController.xib; sourceTree = "<group>"; };
 		DD82252A1742D35C006EFE04 /* battery-full-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-full-charging.png"; path = "Resources/battery-full-charging.png"; sourceTree = "<group>"; };
 		DD82252B1742D35C006EFE04 /* battery-full-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-full-normal.png"; path = "Resources/battery-full-normal.png"; sourceTree = "<group>"; };
 		DD82252C1742D35C006EFE04 /* battery-low-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-low-charging.png"; path = "Resources/battery-low-charging.png"; sourceTree = "<group>"; };
@@ -250,6 +258,8 @@
 				DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */,
 				DD5CB92F174FC933009633EA /* WifiNetworkInfo.h */,
 				DD5CB930174FC933009633EA /* WifiNetworkInfo.m */,
+				DD5CB9361755684A009633EA /* TestHardwareNetworkMonitor.h */,
+				DD5CB9371755684A009633EA /* TestHardwareNetworkMonitor.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -266,6 +276,9 @@
 				DD82253F174AD9BE006EFE04 /* GeneralPreferencesViewController.xib */,
 				DD822549174C3218006EFE04 /* PreferencesController.h */,
 				DD82254A174C3218006EFE04 /* PreferencesController.m */,
+				DD5CB93917594FC7009633EA /* TestPreferencesViewController.h */,
+				DD5CB93A17594FC7009633EA /* TestPreferencesViewController.m */,
+				DD5CB93B17594FC7009633EA /* TestPreferencesViewController.xib */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -337,6 +350,7 @@
 				DD8225371742F332006EFE04 /* battery-unknown-unknown.png in Resources */,
 				DD822541174AD9BE006EFE04 /* GeneralPreferencesViewController.xib in Resources */,
 				DD822547174ADAC1006EFE04 /* MASPreferencesWindow.xib in Resources */,
+				DD5CB93D17594FC7009633EA /* TestPreferencesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +376,8 @@
 				DD822548174ADAC1006EFE04 /* MASPreferencesWindowController.m in Sources */,
 				DD82254B174C3218006EFE04 /* PreferencesController.m in Sources */,
 				DD5CB931174FC933009633EA /* WifiNetworkInfo.m in Sources */,
+				DD5CB9381755684A009633EA /* TestHardwareNetworkMonitor.m in Sources */,
+				DD5CB93C17594FC7009633EA /* TestPreferencesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
