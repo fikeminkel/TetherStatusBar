@@ -1,4 +1,4 @@
-#import "FPopStatusUtils.h"
+#import "TetherStatusUtils.h"
 #import "HardwareNetworkMonitor.h"
 #import "TestHardwareNetworkMonitor.h"
 
@@ -10,17 +10,16 @@
 #import "FPopConnectionStatusPoller.h"
 #import "FPopTestConnectionStatusPoller.h"
 #import "FPopConnectionStatus.h"
-#import "FPopStatusBarView.h"
+#import "TetherStatusView.h"
 
 #import "MASPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
-
 @implementation FPopStatusBarAppDelegate
 
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     app = (NSApplication *)aNotification.object;
-    
+
 #ifdef SIMULATE_NETWORK
     connectionPoller = [[FPopTestConnectionStatusPoller alloc] initWithDelegate:self];
     batteryPoller = [[FPopTestBatteryStatusPoller alloc] initWithDelegate:self];
@@ -74,11 +73,12 @@
 {
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     
-    statusView = [[FPopStatusBarView alloc] init];
+    statusView = [[TetherStatusView alloc] init];
     statusView.statusItem = statusItem;
     [statusItem setView:statusView];
     [statusView setMenu:statusMenu];
 
+    // TODO don't directly use FPopConnection/BatteryStatus
     [statusView updateConnectionStatus:[FPopConnectionStatus disconnectedStatus].signal];
     [statusView updateBatteryStatus:[FPopBatteryStatus unknownStatus].statusStr];
 
@@ -114,6 +114,7 @@
     [connectionPoller stopPolling];
     [batteryPoller stopPolling];
 
+    // TODO don't directly use FPopConnection/BatteryStatus
     [statusView updateBatteryStatus:[FPopBatteryStatus unknownStatus].statusStr];
     [statusView updateConnectionStatus:[FPopConnectionStatus disconnectedStatus].signal];
 }
@@ -125,7 +126,7 @@
 }
 
 #pragma mark -
-#pragma mark FPopConnectionStatusPollerDelegate methods
+#pragma mark TetherConnectionStatusPollerDelegate methods
 -(void) connectionStatusUpdated:(FPopConnectionStatus *)connectionStatus
 {
     NSString *statusTxt = [NSString stringWithFormat:@"Status:%@\nSignal:%@\nUptime:%@\nIP Address:%@",
@@ -142,7 +143,7 @@
 }
 
 #pragma mark -
-#pragma mark FPopBatteryStatusPollerDelegate methods
+#pragma mark TetherBatteryStatusPollerDelegate methods
 -(void) batteryStatusUpdated:(FPopBatteryStatus *)batteryStatus
 {
     if (!lastBatteryStatus || ![lastBatteryStatus isEqual:batteryStatus]) {
@@ -193,7 +194,7 @@
 -(void) wifiConnected:(NSString *)ssid {
     DLog(@"wifiConnected: %@", ssid);
     // this should handle if an ssid pref is set and the wifi network changes
-    if (![ssid isEqual:currentSSID]) {
+    if (!currentSSID || ![ssid isEqual:currentSSID]) {
         [currentSSID release];
         currentSSID = [ssid retain];
         // if there isn't a preferred ssid, always poll
@@ -212,6 +213,9 @@
 
 -(void) wifiDisconnected:(NSString *)ssid {
     DLog(@"wifiDisconnected: %@", ssid);
+    [currentSSID release];
+    currentSSID = nil;
+    
     [self stopPolling];
 }
 

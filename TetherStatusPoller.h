@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface FPopStatusPoller : NSObject <NSURLConnectionDelegate> {
+@interface TetherStatusPoller : NSObject <NSURLConnectionDelegate> {
     NSTimer* statusTimer;
     NSMutableData *responseData;
 }

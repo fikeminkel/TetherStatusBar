@@ -1,6 +1,6 @@
 #import <CoreWLAN/CoreWLAN.h>
 #import "WifiNetworkInfo.h"
-#import "FPopStatusUtils.h"
+#import "TetherStatusUtils.h"
 
 @implementation WifiNetworkInfo
 

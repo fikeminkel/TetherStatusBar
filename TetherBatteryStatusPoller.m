@@ -1,13 +1,16 @@
-//
-//  TetherBatteryStatusPoller.m
-//  FPopStatusBar
-//
-//  Created by Finkel, Michael R. on 7/12/13.
-//
-//
-
 #import "TetherBatteryStatusPoller.h"
 
 @implementation TetherBatteryStatusPoller
+
+@synthesize delegate;
+
+-(TetherBatteryStatusPoller *) initWithDelegate:(id<TetherBatteryStatusPollerDelegate>)theDelegate
+{
+    self = [self init];
+    if (self) {
+        self.delegate = theDelegate;
+    }
+    return self;
+}
 
 @end

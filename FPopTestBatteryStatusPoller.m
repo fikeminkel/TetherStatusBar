@@ -1,6 +1,6 @@
 #import "FPopTestBatteryStatusPoller.h"
 #import "FPopBatteryStatus.h"
-#import "FPopStatusUtils.h"
+#import "TetherStatusUtils.h"
 
 @implementation FPopTestBatteryStatusPoller
 

@@ -1,14 +1,12 @@
 #import "FPopBatteryStatusPoller.h"
+#import "FPopBatteryStatus.h"
 
 @implementation FPopBatteryStatusPoller
 
-@synthesize delegate;
-
--(FPopBatteryStatusPoller *) initWithDelegate:(id<FPopBatteryStatusPollerDelegate>)theDelegate
+-(FPopBatteryStatusPoller *) initWithDelegate:(id<TetherBatteryStatusPollerDelegate>)theDelegate
 {
-    self = [self init];
+    self = [super initWithDelegate:theDelegate];
     if (self) {
-        self.delegate = theDelegate;
         self.statusURL = [NSURL URLWithString:@"http://192.168.1.1/cgi-bin/webmain.cgi?act=act_battery_status&TYPE=BISCUIT"];
     }
     return self;

@@ -1,13 +1,20 @@
-//
-//  TetherBatteryStatusPoller.h
-//  FPopStatusBar
-//
-//  Created by Finkel, Michael R. on 7/12/13.
-//
-//
-
 #import <Foundation/Foundation.h>
+#import "TetherBatteryStatus.h"
+#import "TetherStatusPoller.h"
 
-@interface TetherBatteryStatusPoller : NSObject
+
+@protocol TetherBatteryStatusPollerDelegate <NSObject>
+@required
+- (void) batteryStatusUpdated:(TetherBatteryStatus *)status;
+@end
+
+@interface TetherBatteryStatusPoller : TetherStatusPoller {
+    id <TetherBatteryStatusPollerDelegate> delegate;
+}
+@property (retain) id <TetherBatteryStatusPollerDelegate> delegate;
+
+-(TetherBatteryStatusPoller *) initWithDelegate:(id <TetherBatteryStatusPollerDelegate>) theDelegate;
+
 
 @end
+

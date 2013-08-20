@@ -1,13 +1,30 @@
-//
-//  TetherConnectionStatus.h
-//  FPopStatusBar
-//
-//  Created by Finkel, Michael R. on 7/12/13.
-//
-//
-
 #import <Foundation/Foundation.h>
 
-@interface TetherConnectionStatus : NSObject
+typedef enum {
+    kTetherConnectionStatusSignalType_NONE,
+    kTetherConnectionStatusSignalType_LOW,
+    kTetherConnectionStatusSignalType_MEDIUM,
+    kTetherConnectionStatusSignalType_HIGH,
+    kTetherConnectionStatusSignalType_FULL,
+    kTetherConnectionStatusSignalType_DEFAULT = kTetherConnectionStatusSignalType_NONE
+} TetherConnectionStatusSignalType;
+#define kTetherConnectionStatusSignalTypeNamesArray @"none", @"low", @"medium", @"high", @"full", nil
+
+@interface TetherConnectionStatus : NSObject {
+    NSString *status;
+    NSString *signalStr;
+    NSString *uptime;
+    NSString *signal;
+    NSString *ipAddress;
+}
+
+@property (retain) NSString *status;
+@property (retain) NSString *signalStr;
+@property (retain) NSString *uptime;
+@property (retain) NSString *signal;
+@property (retain) NSString *ipAddress;
+
++(NSString *) stringFromSignalType:(TetherConnectionStatusSignalType) type;
++(TetherConnectionStatusSignalType) signalTypeFromString:(NSString *) s;
 
 @end

@@ -1,5 +1,6 @@
 #import "TestPreferencesViewController.h"
 #import "PreferencesController.h"
+#import "TetherStatusUtils.h"
 
 @implementation TestPreferencesViewController
 
@@ -12,6 +13,11 @@
         _prefsController = prefsController;
     }
     return self;
+}
+
+-(void) viewWillAppear
+{
+    DLog(@"TestPreferencesViewController viewWillAppear");
 }
 
 -(NSString *) identifier
@@ -31,6 +37,7 @@
 
 -(BOOL) commitEditing
 {
+    DLog(@"TestPreferencesViewController commitEditing: %@", [ssidField stringValue]);
     [[NSUserDefaults standardUserDefaults] setObject:[ssidField stringValue] forKey:TEST_PREFS_SSID];
     return YES;
 }

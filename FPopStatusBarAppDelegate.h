@@ -1,24 +1,24 @@
 #import <Cocoa/Cocoa.h>
 #import "HardwareNetworkMonitor.h"
+#import "TetherStatusView.h"
 #import "FPopConnectionStatusPoller.h"
 #import "FPopBatteryStatusPoller.h"
-#import "FPopStatusBarView.h"
 #import "PreferencesController.h"
 
 #define FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL 2.0
 #define FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL 30.0
 
-@interface FPopStatusBarAppDelegate : NSObject <NSApplicationDelegate, FPopConnectionStatusPollerDelegate, FPopBatteryStatusPollerDelegate, HardwareNetworkMonitorDelegate, PreferencesControllerDelegate> {
+@interface FPopStatusBarAppDelegate : NSObject <NSApplicationDelegate, TetherConnectionStatusPollerDelegate, TetherBatteryStatusPollerDelegate, HardwareNetworkMonitorDelegate, PreferencesControllerDelegate> {
     NSApplication *app;
     NSStatusItem *statusItem;
     IBOutlet NSMenu *statusMenu;
     PreferencesController *prefsController;
 
-    FPopStatusBarView *statusView;
-    FPopConnectionStatusPoller *connectionPoller;
-    FPopConnectionStatus *lastConnectionStatus;
-    FPopBatteryStatusPoller *batteryPoller;
-    FPopBatteryStatus *lastBatteryStatus;
+    TetherStatusView *statusView;
+    TetherConnectionStatusPoller *connectionPoller;
+    TetherConnectionStatus *lastConnectionStatus;
+    TetherBatteryStatusPoller *batteryPoller;
+    TetherBatteryStatus *lastBatteryStatus;
     HardwareNetworkMonitor *networkMonitor;
     
     NSString *currentSSID;
@@ -29,8 +29,8 @@
 //-(IBAction)showHideBatteryUsageAction:(id)sender;
 
 
--(void) connectionStatusUpdated:(FPopConnectionStatus *)status;
--(void) batteryStatusUpdated:(FPopBatteryStatus *)status;
+-(void) connectionStatusUpdated:(TetherConnectionStatus *)status;
+-(void) batteryStatusUpdated:(TetherBatteryStatus *)status;
 
 -(void) ethernetConnected:(NSString *)interfaceName description:(NSString *)description;
 -(void) ethernetDisconnected: (NSString *)interfaceName;

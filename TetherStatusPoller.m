@@ -1,7 +1,7 @@
-#import "FPopStatusPoller.h"
-#import "FPopStatusUtils.h"
+#import "TetherStatusPoller.h"
+#import "TetherStatusUtils.h"
 
-@implementation FPopStatusPoller
+@implementation TetherStatusPoller
 
 -(void) startPolling:(NSTimeInterval)interval
 {

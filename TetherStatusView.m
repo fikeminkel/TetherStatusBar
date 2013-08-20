@@ -1,11 +1,10 @@
-#import "FPopStatusBarView.h"
-#import "FPopStatusUtils.h"
+#import "TetherStatusView.h"
+#import "TetherStatusUtils.h"
 
-@implementation FPopStatusBarView
+@implementation TetherStatusView
 
 static NSMutableDictionary *statusImages;
 static NSMutableDictionary *batteryImages;
-
 
 
 @synthesize statusItem;

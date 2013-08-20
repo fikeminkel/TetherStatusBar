@@ -1,5 +1,5 @@
 #import "GeneralPreferencesViewController.h"
-#import "FPopStatusUtils.h"
+#import "TetherStatusUtils.h"
 #import "WifiNetworkInfo.h"
 
 @implementation GeneralPreferencesViewController

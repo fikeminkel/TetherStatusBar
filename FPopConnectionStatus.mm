@@ -2,13 +2,6 @@
 
 @implementation FPopConnectionStatus
 
-@synthesize signal;
-@synthesize uptime;
-@synthesize signalStr;
-@synthesize status;
-@synthesize ipAddress;
-
-static NSArray *FPopConnectionStatusSignalTypeArray = [[NSArray alloc] initWithObjects:kFPopConnectionStatusSignalTypeNamesArray];
 static FPopConnectionStatus* disconnected = [FPopConnectionStatus statusWithData:
     [NSDictionary dictionaryWithObjectsAndKeys:@"N/A", @"ID_WIMAX_CINR", @"UNKNOWN", @"ID_WIMAX_STATUS", @"N/A", @"ID_WIMAX_RSSI", @"0", @"ID_WIMAX_CONN_TIME", @"0.0.0.0", @"ID_WIMAX_IP_ADDR", nil]];
 
@@ -17,20 +10,6 @@ static NSArray *signalLevels = [NSArray arrayWithObjects:
                                 [NSNumber numberWithInt:12],
                                 [NSNumber numberWithInt:18],
                                 [NSNumber numberWithInt:23], nil];
-
-+(NSString *) stringFromSignalType:(FPopConnectionStatusSignalType) type
-{
-    return [FPopConnectionStatusSignalTypeArray objectAtIndex:type];
-}
-
-+(FPopConnectionStatusSignalType) signalTypeFromString:(NSString *) s {
-    NSUInteger n = [FPopConnectionStatusSignalTypeArray indexOfObject:s];
-    check (n != NSNotFound);
-    if (n == NSNotFound) {
-        n = kFPopConnectionStatusSignalType_DEFAULT;
-    }
-    return (FPopConnectionStatusSignalType) n;
-}
 
 + (int) calcSignalLevel:(int) level
 {
@@ -56,7 +35,7 @@ static NSArray *signalLevels = [NSArray arrayWithObjects:
         status.signal = @"disconnected";
     } else {
         int signalInt = [self calcSignalLevel:[cinr intValue]];
-        status.signal = [FPopConnectionStatus stringFromSignalType:(FPopConnectionStatusSignalType) signalInt];
+        status.signal = [TetherConnectionStatus stringFromSignalType:(TetherConnectionStatusSignalType) signalInt];
     }    
     return status;
 }

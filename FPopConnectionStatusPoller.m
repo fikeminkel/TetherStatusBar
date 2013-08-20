@@ -3,13 +3,10 @@
 
 @implementation FPopConnectionStatusPoller
 
-@synthesize delegate;
-
--(FPopConnectionStatusPoller *) initWithDelegate:(id<FPopConnectionStatusPollerDelegate>)theDelegate
+-(FPopConnectionStatusPoller *) initWithDelegate:(id<TetherConnectionStatusPollerDelegate>)theDelegate
 {
-    self = [self init];
+    self = [super initWithDelegate:theDelegate];
     if (self) {
-        self.delegate = theDelegate;
         self.statusURL = [NSURL URLWithString:@"http://192.168.1.1/cgi-bin/webmain.cgi?act=act_summary"];
     }
     return self;

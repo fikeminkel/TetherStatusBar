@@ -1,5 +1,5 @@
-#ifndef FPopStatusBar_FPopStatusUtils_h
-#define FPopStatusBar_FPopStatusUtils_h
+#ifndef TetherStatus_TetherStatusUtils_h
+#define TetherStatus_TetherStatusUtils_h
 
 #ifdef DEBUG
 #   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)

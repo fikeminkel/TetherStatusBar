@@ -1,6 +1,6 @@
 #import <Cocoa/Cocoa.h>
 
-@interface FPopStatusBarView : NSView <NSMenuDelegate> {
+@interface TetherStatusView : NSView <NSMenuDelegate> {
     NSRect frameWithBattery;
     NSRect frameWithoutBattery;
     NSImage* connectionImage;

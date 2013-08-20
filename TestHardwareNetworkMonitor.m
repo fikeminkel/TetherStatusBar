@@ -1,5 +1,5 @@
 #import "TestHardwareNetworkMonitor.h"
-#import "FPopStatusUtils.h"
+#import "TetherStatusUtils.h"
 #import "PreferencesController.h"
 
 @implementation TestHardwareNetworkMonitor

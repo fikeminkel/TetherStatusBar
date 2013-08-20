@@ -2,7 +2,7 @@
 #import "GeneralPreferencesViewController.h"
 #import "TestPreferencesViewController.h"
 #import "MASPreferencesWindowController.h"
-#import "FPopStatusUtils.h"
+#import "TetherStatusUtils.h"
 
 @implementation PreferencesController
 
@@ -30,10 +30,18 @@
         NSMutableArray *views = [NSMutableArray arrayWithObjects:generalViewController, nil];
 #ifdef SIMULATE_NETWORK
         TestPreferencesViewController *testViewController = [[TestPreferencesViewController alloc] initWithPrefsController:self];
-        [views addObject:testViewController];n
+        [views addObject:testViewController];
 #endif
         preferencesWindow = [[MASPreferencesWindowController alloc] initWithViewControllers:views title:@"Preferences"];
+        
+        NSSize windowSize;
+        windowSize.width = 400;
+        windowSize.height = 300;
+        
+        [preferencesWindow.window setMaxSize:windowSize];
+        [preferencesWindow.window setMinSize:windowSize];
         preferencesWindow.window.level = NSModalPanelWindowLevel;
+        [preferencesWindow.window center];
     }
     [preferencesWindow showWindow:self];
 }

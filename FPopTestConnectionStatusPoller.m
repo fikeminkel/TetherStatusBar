@@ -1,5 +1,6 @@
 #import "FPopTestConnectionStatusPoller.h"
-#import "FPopStatusUtils.h"
+#import "FPopConnectionStatus.h"
+#import "TetherStatusUtils.h"
 
 @implementation FPopTestConnectionStatusPoller
 
