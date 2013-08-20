@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		256AC3DA0F4B6AC300CF3369 /* FPopStatusBarAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* FPopStatusBarAppDelegate.m */; };
+		256AC3DA0F4B6AC300CF3369 /* TetherStatusBarAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* TetherStatusBarAppDelegate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -56,8 +56,8 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		256AC3D80F4B6AC300CF3369 /* FPopStatusBarAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatusBarAppDelegate.h; sourceTree = "<group>"; };
-		256AC3D90F4B6AC300CF3369 /* FPopStatusBarAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopStatusBarAppDelegate.m; sourceTree = "<group>"; };
+		256AC3D80F4B6AC300CF3369 /* TetherStatusBarAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TetherStatusBarAppDelegate.h; sourceTree = "<group>"; };
+		256AC3D90F4B6AC300CF3369 /* TetherStatusBarAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TetherStatusBarAppDelegate.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* TetherStatusBar_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TetherStatusBar_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -144,8 +144,8 @@
 				DD3CE8011742B1B20074FFEA /* TetherStatusUtils.h */,
 				DD3CE7FE1742AFF40074FFEA /* TetherStatusPoller.h */,
 				DD3CE7FF1742AFF40074FFEA /* TetherStatusPoller.m */,
-				256AC3D80F4B6AC300CF3369 /* FPopStatusBarAppDelegate.h */,
-				256AC3D90F4B6AC300CF3369 /* FPopStatusBarAppDelegate.m */,
+				256AC3D80F4B6AC300CF3369 /* TetherStatusBarAppDelegate.h */,
+				256AC3D90F4B6AC300CF3369 /* TetherStatusBarAppDelegate.m */,
 				DD3CE7ED173D8C3B0074FFEA /* TetherStatusView.h */,
 				DD3CE7EE173D8C3B0074FFEA /* TetherStatusView.m */,
 				DDDC719E1790ABF70063BB93 /* Battery */,
@@ -160,6 +160,8 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD5CB934174FCF13009633EA /* CoreWLAN.framework */,
+				DD5CB932174FCF07009633EA /* SystemConfiguration.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -186,8 +188,6 @@
 		29B97314FDCFA39411CA2CEA /* StatusBarApp */ = {
 			isa = PBXGroup;
 			children = (
-				DD5CB934174FCF13009633EA /* CoreWLAN.framework */,
-				DD5CB932174FCF07009633EA /* SystemConfiguration.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -406,7 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				256AC3DA0F4B6AC300CF3369 /* FPopStatusBarAppDelegate.m in Sources */,
+				256AC3DA0F4B6AC300CF3369 /* TetherStatusBarAppDelegate.m in Sources */,
 				DDD1D5CD173C1DFC0085FDC6 /* HardwareNetworkMonitor.m in Sources */,
 				DD3CE7EF173D8C3B0074FFEA /* TetherStatusView.m in Sources */,
 				DD3CE7F41742A9AC0074FFEA /* FPopConnectionStatusPoller.m in Sources */,

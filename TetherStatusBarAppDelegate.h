@@ -1,14 +1,14 @@
 #import <Cocoa/Cocoa.h>
 #import "HardwareNetworkMonitor.h"
 #import "TetherStatusView.h"
-#import "FPopConnectionStatusPoller.h"
-#import "FPopBatteryStatusPoller.h"
+#import "TetherConnectionStatusPoller.h"
+#import "TetherBatteryStatusPoller.h"
 #import "PreferencesController.h"
 
 #define FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL 2.0
 #define FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL 30.0
 
-@interface FPopStatusBarAppDelegate : NSObject <NSApplicationDelegate, TetherConnectionStatusPollerDelegate, TetherBatteryStatusPollerDelegate, HardwareNetworkMonitorDelegate, PreferencesControllerDelegate> {
+@interface TetherStatusBarAppDelegate : NSObject <NSApplicationDelegate, TetherConnectionStatusPollerDelegate, TetherBatteryStatusPollerDelegate, HardwareNetworkMonitorDelegate, PreferencesControllerDelegate> {
     NSApplication *app;
     NSStatusItem *statusItem;
     IBOutlet NSMenu *statusMenu;

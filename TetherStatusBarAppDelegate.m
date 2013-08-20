@@ -2,7 +2,7 @@
 #import "HardwareNetworkMonitor.h"
 #import "TestHardwareNetworkMonitor.h"
 
-#import "FPopStatusBarAppDelegate.h"
+#import "TetherStatusBarAppDelegate.h"
 #import "FPopBatteryStatusPoller.h"
 #import "FPopTestBatteryStatusPoller.h"
 #import "FPopBatteryStatus.h"
@@ -14,7 +14,7 @@
 
 #import "MASPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
-@implementation FPopStatusBarAppDelegate
+@implementation TetherStatusBarAppDelegate
 
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
