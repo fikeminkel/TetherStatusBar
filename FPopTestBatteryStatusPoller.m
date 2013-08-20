@@ -1,5 +1,4 @@
 #import "FPopTestBatteryStatusPoller.h"
-#import "FPopBatteryStatus.h"
 #import "TetherStatusUtils.h"
 
 @implementation FPopTestBatteryStatusPoller
@@ -22,7 +21,7 @@
     testdataCurrentStatus = [testdataCurrentStatus isEqual:@"normal"] ? @"charging" : @"normal";
     [data setValue:testdataCurrentStatus forKey:@"STATUS"];
     testdataCurrentOption = (testdataCurrentOption >= testdataOptions.count-1) ? 0 : testdataCurrentOption + 1;
-    [delegate batteryStatusUpdated:[FPopBatteryStatus statusWithData:data]];
+    [self updateStatus:data];
 }
 
 -(void) dealloc

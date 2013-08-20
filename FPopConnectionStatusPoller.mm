@@ -1,9 +1,7 @@
-#import "FPopConnectionStatus.h"
+#import "FPopConnectionStatusPoller.h"
+#import "TetherStatus.h"
 
-@implementation FPopConnectionStatus
-
-static FPopConnectionStatus* disconnected = [FPopConnectionStatus statusWithData:
-    [NSDictionary dictionaryWithObjectsAndKeys:@"N/A", @"ID_WIMAX_CINR", @"UNKNOWN", @"ID_WIMAX_STATUS", @"N/A", @"ID_WIMAX_RSSI", @"0", @"ID_WIMAX_CONN_TIME", @"0.0.0.0", @"ID_WIMAX_IP_ADDR", nil]];
+@implementation FPopConnectionStatusPoller
 
 static NSArray *signalLevels = [NSArray arrayWithObjects:
                                 [NSNumber numberWithInt:6],
@@ -11,7 +9,21 @@ static NSArray *signalLevels = [NSArray arrayWithObjects:
                                 [NSNumber numberWithInt:18],
                                 [NSNumber numberWithInt:23], nil];
 
-+ (int) calcSignalLevel:(int) level
+-(FPopConnectionStatusPoller *) initWithDelegate:(id<TetherStatusPollerDelegate>)theDelegate
+                                          status:(TetherStatus*) theStatus
+
+{
+    self = [super init];
+    if (self) {
+        self->delegate = [theDelegate retain];
+        self->status = [theStatus retain];
+        self.statusURL = [NSURL URLWithString:@"http://192.168.1.1/cgi-bin/webmain.cgi?act=act_summary"];
+    }
+    return self;
+}
+
+
+- (int) calcSignalLevel:(int) level
 {
     for (NSInteger i = 0; i < [signalLevels count]; i++) {
         if (level < [(NSNumber *) [signalLevels objectAtIndex:i] intValue]) {
@@ -21,8 +33,9 @@ static NSArray *signalLevels = [NSArray arrayWithObjects:
     return 4;
 }
 
-+(FPopConnectionStatus *) statusWithData:(NSDictionary *)data {
-    FPopConnectionStatus *status = [[[FPopConnectionStatus alloc] init] autorelease];
+-(void) updateStatus:(NSDictionary *) data
+{
+
     status.status = [data valueForKey:@"ID_WIMAX_STATUS"];
     NSString* cinr = (NSString *)[data valueForKey:@"ID_WIMAX_CINR"];
     status.signalStr = [NSString stringWithFormat:@"RSSI:%@, CINR:%@",
@@ -30,24 +43,26 @@ static NSArray *signalLevels = [NSArray arrayWithObjects:
                         cinr];
     status.uptime = (NSString *)[data valueForKey:@"ID_WIMAX_CONN_TIME"];
     status.ipAddress = (NSString *)[data valueForKey:@"ID_WIMAX_IP_ADDR"];
-
+    
     if (!cinr || [cinr isEqualToString: @"N/A"]) {
         status.signal = @"disconnected";
     } else {
         int signalInt = [self calcSignalLevel:[cinr intValue]];
-        status.signal = [TetherConnectionStatus stringFromSignalType:(TetherConnectionStatusSignalType) signalInt];
-    }    
-    return status;
+        status.signal = [TetherStatus stringFromSignalType:(TetherConnectionStatusSignalType) signalInt];
+    }
+
+    [delegate statusUpdated:status];
 }
 
-+(FPopConnectionStatus *) disconnectedStatus
+-(void) dealloc
 {
-    return disconnected;
-}
-
--(NSString *) description
-{
-    return [NSString stringWithFormat:@"FPopConnectionStatus: { status: %@, signalStr: %@, uptime: %@, signal: %@, ipAddress: %@}", status, signalStr, uptime, signal, ipAddress];
+    [delegate release];
+    delegate = nil;
+    
+    [status release];
+    status = nil;
+    
+    [super dealloc];
 }
 
 @end

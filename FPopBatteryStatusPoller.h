@@ -1,9 +1,15 @@
 #import <Foundation/Foundation.h>
-#import "TetherBatteryStatusPoller.h"
+#import "TetherPoller.h"
+#import "TetherStatusPoller.h"
+#import "TetherStatus.h"
 
-@interface FPopBatteryStatusPoller : TetherBatteryStatusPoller
+@interface FPopBatteryStatusPoller : TetherPoller {
+    id <TetherStatusPollerDelegate> delegate;
+    TetherStatus *status;
+}
 
--(FPopBatteryStatusPoller *) initWithDelegate:(id <TetherBatteryStatusPollerDelegate>) theDelegate;
+-(FPopBatteryStatusPoller *) initWithDelegate:(id <TetherStatusPollerDelegate>) theDelegate
+                                       status:(TetherStatus *) theStatus;
 -(void) updateStatus:(NSDictionary *) data;
 
 @end

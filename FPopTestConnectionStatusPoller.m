@@ -1,5 +1,4 @@
 #import "FPopTestConnectionStatusPoller.h"
-#import "FPopConnectionStatus.h"
 #import "TetherStatusUtils.h"
 
 @implementation FPopTestConnectionStatusPoller
@@ -17,7 +16,6 @@
 
 -(void) checkStatus
 {
-//    NSLog(@"connectionStatus");
     NSMutableDictionary *data = [[[NSMutableDictionary alloc] init] autorelease];
     [data setValue:@"CONNECTED" forKey:@"ID_WIMAX_STATUS"];
     [data setValue:@"00:22:47" forKey:@"ID_WIMAX_CONN_TIME"];
@@ -25,7 +23,7 @@
     [data setValue:@"-72" forKey:@"ID_WIMAX_RSSI"];
     [data setValue:[testdataOptions objectAtIndex:testdataCurrentOption] forKey:@"ID_WIMAX_CINR"];
     testdataCurrentOption = (testdataCurrentOption >= testdataOptions.count-1) ? 0 : testdataCurrentOption + 1;
-    [delegate connectionStatusUpdated:[FPopConnectionStatus statusWithData:data]];
+    [self updateStatus:data];
 }
 
 -(void) dealloc

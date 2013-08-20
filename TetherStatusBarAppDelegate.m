@@ -3,13 +3,10 @@
 #import "TestHardwareNetworkMonitor.h"
 
 #import "TetherStatusBarAppDelegate.h"
-#import "FPopBatteryStatusPoller.h"
-#import "FPopTestBatteryStatusPoller.h"
-#import "FPopBatteryStatus.h"
 
-#import "FPopConnectionStatusPoller.h"
+#import "FPopStatusPoller.h"
 #import "FPopTestConnectionStatusPoller.h"
-#import "FPopConnectionStatus.h"
+#import "TetherStatus.h"
 #import "TetherStatusView.h"
 
 #import "MASPreferencesWindowController.h"
@@ -20,15 +17,12 @@
 {
     app = (NSApplication *)aNotification.object;
 
+    statusPoller = [[FPopStatusPoller alloc] initWithDelegate:self];
 #ifdef SIMULATE_NETWORK
-    connectionPoller = [[FPopTestConnectionStatusPoller alloc] initWithDelegate:self];
-    batteryPoller = [[FPopTestBatteryStatusPoller alloc] initWithDelegate:self];
     networkMonitor = [[TestHardwareNetworkMonitor alloc] initWithDelegate:self];
 #endif
     
 #ifndef SIMULATE_NETWORK
-    connectionPoller = [[FPopConnectionStatusPoller alloc] initWithDelegate:self];
-    batteryPoller = [[FPopBatteryStatusPoller alloc] initWithDelegate:self];
     networkMonitor = [[HardwareNetworkMonitor alloc] initWithDelegate:self];
 #endif
     [self stopPolling];
@@ -39,22 +33,16 @@
 
 -(void)applicationWillTerminate:(NSNotification *)notification {
     DLog(@"applicationWillTerminate");
-    [connectionPoller stopPolling];
-    [connectionPoller release];
-    connectionPoller = nil;
+    [statusPoller stopPolling];
+    [statusPoller release];
+    statusPoller = nil;
 
-    [batteryPoller stopPolling];
-    [batteryPoller release];
-    batteryPoller = nil;
 
     [networkMonitor release];
     networkMonitor = nil;
-
-    [lastConnectionStatus release];
-    lastConnectionStatus = nil;
     
-    [lastBatteryStatus release];
-    lastBatteryStatus = nil;
+    [lastStatus release];
+    lastStatus = nil;
     
     [currentSSID release];
     currentSSID = nil;
@@ -78,9 +66,8 @@
     [statusItem setView:statusView];
     [statusView setMenu:statusMenu];
 
-    // TODO don't directly use FPopConnection/BatteryStatus
-    [statusView updateConnectionStatus:[FPopConnectionStatus disconnectedStatus].signal];
-    [statusView updateBatteryStatus:[FPopBatteryStatus unknownStatus].statusStr];
+    [statusView updateConnectionStatus:[TetherStatus disconnectedStatus].signal];
+    [statusView updateBatteryStatus:[TetherStatus disconnectedStatus].batteryStatus];
 
     prefsController = [[PreferencesController alloc] initWithDelegate:self];
     [self showHideBatteryUsage:prefsController.showBatteryUsage];
@@ -96,11 +83,6 @@
 -(void) showHideBatteryUsage:(BOOL)show
 {
     statusView.showBatteryImage = show;
-    if (show) {
-        [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];
-    } else {
-        [batteryPoller stopPolling];
-    }
 }
 
 -(IBAction)showPreferencesPanel:(id)sender
@@ -111,49 +93,35 @@
 
 -(void) stopPolling
 {
-    [connectionPoller stopPolling];
-    [batteryPoller stopPolling];
+    [statusPoller stopPolling];
 
-    // TODO don't directly use FPopConnection/BatteryStatus
-    [statusView updateBatteryStatus:[FPopBatteryStatus unknownStatus].statusStr];
-    [statusView updateConnectionStatus:[FPopConnectionStatus disconnectedStatus].signal];
+    [statusView updateConnectionStatus:[TetherStatus disconnectedStatus].signal];
+    [statusView updateBatteryStatus:[TetherStatus disconnectedStatus].batteryStatus];
 }
 
 -(void) startPolling
 {
-    [connectionPoller startPolling:FPopStatusBarAppDelege_CONNECTION_POLL_INTERVAL];
-    [batteryPoller startPolling:FPopStatusBarAppDelege_BATTERY_POLL_INTERVAL];   
+    [statusPoller startPolling:TetherStatusBarAppDelege_POLL_INTERVAL];
 }
 
 #pragma mark -
-#pragma mark TetherConnectionStatusPollerDelegate methods
--(void) connectionStatusUpdated:(FPopConnectionStatus *)connectionStatus
+#pragma mark TetherStatusPollerDelegate methods
+-(void) statusUpdated:(TetherStatus *)status
 {
     NSString *statusTxt = [NSString stringWithFormat:@"Status:%@\nSignal:%@\nUptime:%@\nIP Address:%@",
-                           connectionStatus.status,
-                           connectionStatus.signalStr,
-                           connectionStatus.uptime,
-                           connectionStatus.ipAddress];    
-    if (!lastConnectionStatus || ![lastConnectionStatus.signal isEqual:connectionStatus.signal]) {
-        [statusView updateConnectionStatus:connectionStatus.signal];
-        [lastConnectionStatus release];
-        lastConnectionStatus = [connectionStatus retain];
+                           status.status,
+                           status.signalStr,
+                           status.uptime,
+                           status.ipAddress];
+    if (!lastStatus || ![lastStatus.signal isEqual:status.signal]) {
+        [statusView updateConnectionStatus:status.signal];
+        [statusView updateBatteryStatus:status.batteryLevel];
+        // TODO add battery status update here
+        [lastStatus release];
+        lastStatus = [status retain];
     }
     [statusView setToolTip:statusTxt];
 }
-
-#pragma mark -
-#pragma mark TetherBatteryStatusPollerDelegate methods
--(void) batteryStatusUpdated:(FPopBatteryStatus *)batteryStatus
-{
-    if (!lastBatteryStatus || ![lastBatteryStatus isEqual:batteryStatus]) {
-        [statusView updateBatteryStatus:batteryStatus.statusStr];
-        [lastBatteryStatus release];
-        lastBatteryStatus = [batteryStatus retain];
-    }
-}
-
-
 
 #pragma mark -
 #pragma mark PreferencesControllerDelegate methods
