@@ -58,11 +58,11 @@
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		256AC3D80F4B6AC300CF3369 /* FPopStatusBarAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatusBarAppDelegate.h; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* FPopStatusBarAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopStatusBarAppDelegate.m; sourceTree = "<group>"; };
-		256AC3F00F4B6AF500CF3369 /* FPopStatusBar_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatusBar_Prefix.pch; sourceTree = "<group>"; };
+		256AC3F00F4B6AF500CF3369 /* TetherStatusBar_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TetherStatusBar_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		8D1107310486CEB800E47090 /* FPopStatusBar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FPopStatusBar-Info.plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* TetherStatusBar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TetherStatusBar-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* FPopStatusBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FPopStatusBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD3CE7ED173D8C3B0074FFEA /* TetherStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TetherStatusView.h; sourceTree = "<group>"; };
 		DD3CE7EE173D8C3B0074FFEA /* TetherStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TetherStatusView.m; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				256AC3F00F4B6AF500CF3369 /* FPopStatusBar_Prefix.pch */,
+				256AC3F00F4B6AF500CF3369 /* TetherStatusBar_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -222,7 +222,7 @@
 				DDD1D5D4173D44920085FDC6 /* network-gsm-medium_18.png */,
 				DDD1D5D5173D44920085FDC6 /* network-gsm-none_18.png */,
 				DDD1D5D6173D44920085FDC6 /* network-wireless-disconnected_18.png */,
-				8D1107310486CEB800E47090 /* FPopStatusBar-Info.plist */,
+				8D1107310486CEB800E47090 /* TetherStatusBar-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 			);
@@ -330,9 +330,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* FPopStatusBar */ = {
+		8D1107260486CEB800E47090 /* TetherStatusBar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "FPopStatusBar" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "TetherStatusBar" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -342,7 +342,7 @@
 			);
 			dependencies = (
 			);
-			name = FPopStatusBar;
+			name = TetherStatusBar;
 			productInstallPath = "$(HOME)/Applications";
 			productName = StatusBarApp;
 			productReference = 8D1107320486CEB800E47090 /* FPopStatusBar.app */;
@@ -356,7 +356,7 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FPopStatusBar" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TetherStatusBar" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -367,7 +367,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* FPopStatusBar */,
+				8D1107260486CEB800E47090 /* TetherStatusBar */,
 			);
 		};
 /* End PBXProject section */
@@ -461,11 +461,11 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = FPopStatusBar_Prefix.pch;
-				INFOPLIST_FILE = "FPopStatusBar-Info.plist";
+				GCC_PREFIX_HEADER = TetherStatusBar_Prefix.pch;
+				INFOPLIST_FILE = "TetherStatusBar-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = FPopStatusBar;
+				PRODUCT_NAME = TetherStatusBar;
 				SDKROOT = macosx10.7;
 			};
 			name = Debug;
@@ -478,11 +478,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = FPopStatusBar_Prefix.pch;
-				INFOPLIST_FILE = "FPopStatusBar-Info.plist";
+				GCC_PREFIX_HEADER = TetherStatusBar_Prefix.pch;
+				INFOPLIST_FILE = "TetherStatusBar-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = FPopStatusBar;
+				PRODUCT_NAME = TetherStatusBar;
 				SDKROOT = macosx10.7;
 			};
 			name = Release;
@@ -552,12 +552,12 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = FPopStatusBar_Prefix.pch;
+				GCC_PREFIX_HEADER = TetherStatusBar_Prefix.pch;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "SIMULATE_NETWORK=1";
-				INFOPLIST_FILE = "FPopStatusBar-Info.plist";
+				INFOPLIST_FILE = "TetherStatusBar-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = FPopStatusBar;
+				PRODUCT_NAME = TetherStatusBar;
 				SDKROOT = macosx10.7;
 			};
 			name = "Simulate Network";
@@ -565,7 +565,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "FPopStatusBar" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "TetherStatusBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
@@ -575,7 +575,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FPopStatusBar" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TetherStatusBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
