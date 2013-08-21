@@ -1,12 +1,9 @@
 #import "FPopBatteryStatusPoller.h"
+#import "TestDataList.h"
 
 @interface FPopTestBatteryStatusPoller : FPopBatteryStatusPoller {
-    NSMutableDictionary *testdata;
-    NSArray *testdataOptions;
-    NSUInteger testdataCurrentOption;
-    
-    NSString *testdataCurrentStatus;
-
+    TestDataList *batteryMeters;
+    TestDataList *chargingStatus;
 }
 
 @end

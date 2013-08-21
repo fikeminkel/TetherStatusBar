@@ -7,9 +7,8 @@
 {
     self = [super init];
     if (self) {
-        testdata = [[NSMutableDictionary alloc] init];
-        testdataOptions = [[NSArray alloc] initWithObjects:@"1", @"2", @"3", nil];
-        testdataCurrentOption = 0;
+        batteryMeters = [[TestDataList alloc] initWithArray:[[[NSArray alloc] initWithObjects:@"1", @"2", @"3", nil] autorelease]];
+        chargingStatus = [[TestDataList alloc] initWithArray:[[[NSArray alloc] initWithObjects:@"charging", @"normal", nil] autorelease]];
     }
     return self;
 }
@@ -17,19 +16,17 @@
 -(void) checkStatus
 {
     NSMutableDictionary *data = [[[NSMutableDictionary alloc] init] autorelease];
-    [data setValue:[testdataOptions objectAtIndex:testdataCurrentOption] forKey:@"LEVEL"];
-    testdataCurrentStatus = [testdataCurrentStatus isEqual:@"normal"] ? @"charging" : @"normal";
-    [data setValue:testdataCurrentStatus forKey:@"STATUS"];
-    testdataCurrentOption = (testdataCurrentOption >= testdataOptions.count-1) ? 0 : testdataCurrentOption + 1;
+    [data setValue:[batteryMeters next] forKey:@"LEVEL"];
+    [data setValue:[chargingStatus next] forKey:@"STATUS"];
     [self updateStatus:data];
 }
 
 -(void) dealloc
 {
-    [testdata release];
-    testdata = nil;
-    [testdataOptions release];
-    testdata = nil;
+    [batteryMeters release];
+    batteryMeters = nil;
+    [chargingStatus release];
+    chargingStatus = nil;
     [super dealloc];
 }
 

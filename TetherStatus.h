@@ -21,6 +21,7 @@ typedef enum {
 
 @interface TetherStatus : NSObject {
     NSString *connectionStatus;
+    NSString *networkType;
     NSString *signalStr;
     NSString *uptime;
     NSString *signal;
@@ -30,6 +31,7 @@ typedef enum {
 }
 
 @property (retain) NSString *status;
+@property (retain) NSString *networkType;
 @property (retain) NSString *signalStr;
 @property (retain) NSString *uptime;
 @property (retain) NSString *signal;

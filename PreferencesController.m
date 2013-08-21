@@ -26,7 +26,7 @@
 -(void)showPreferencesPanel:(id)sender {
     if (!preferencesWindow) {
 
-        GeneralPreferencesViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithPrefsController:self];
+        GeneralPreferencesViewController *generalViewController = [[[GeneralPreferencesViewController alloc] initWithPrefsController:self] autorelease];
         NSMutableArray *views = [NSMutableArray arrayWithObjects:generalViewController, nil];
 #ifdef SIMULATE_NETWORK
         TestPreferencesViewController *testViewController = [[TestPreferencesViewController alloc] initWithPrefsController:self];
@@ -96,6 +96,7 @@
     _ssid = nil;
     [userDefaults release];
     userDefaults = nil;
+    
     
     [preferencesWindow release];
     preferencesWindow = nil;

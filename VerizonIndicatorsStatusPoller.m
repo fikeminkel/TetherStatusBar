@@ -13,7 +13,8 @@
 }
 
 // crude mapping of 6 levels to 5
--(int) calcSignalLevel:(int) level {
+-(int) calcSignalLevel:(int) level
+{
     if (level == 4) {
         return 3;
     }
@@ -24,7 +25,8 @@
 }
 
 // crude mapping of 5 levels to 4
--(int) calcBatteryLevel:(int) level {
+-(int) calcBatteryLevel:(int) level
+{
     if (level == 3) {
         return 2;
     }
@@ -34,9 +36,24 @@
     return level;
 }
 
+-(NSString *) calcNetworkType:(int) type
+{
+    if (type == 1) {
+        return @"1X";
+    }
+    if (type == 3) {
+        return @"3G";
+    }
+    if (type == 4) {
+        return @"4G";
+    }
+    return NULL;
+}
+
 -(void) updateStatus:(NSDictionary *) data
 {
     NSInteger networkType = [[data valueForKey:@"networkType"] intValue];
+    status.networkType = [self calcNetworkType:networkType];
     if (networkType == 0) {
         status.status = @"DISCONNECTED";
         status.signal = @"disconnected";

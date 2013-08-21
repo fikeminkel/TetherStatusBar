@@ -44,9 +44,11 @@ static NSArray *signalLevels = [NSArray arrayWithObjects:
     
     if (!cinr || [cinr isEqualToString: @"N/A"]) {
         status.signal = @"disconnected";
+        status.networkType = NULL;
     } else {
         int signalInt = [self calcSignalLevel:[cinr intValue]];
         status.signal = [TetherStatus stringFromSignalType:(TetherConnectionStatusSignalType) signalInt];
+        status.networkType = @"4G";
     }
 
     [delegate statusUpdated:status];
