@@ -1,12 +1,9 @@
 #import <Foundation/Foundation.h>
-#import "TetherPoller.h"
+#import "TetherApiPoller.h"
 #import "TetherStatusPoller.h"
 #import "TetherStatus.h"
 
-@interface FPopBatteryStatusPoller : TetherPoller {
-    id <TetherStatusPollerDelegate> delegate;
-    TetherStatus *status;
-}
+@interface FPopBatteryStatusPoller : TetherApiPoller
 
 -(FPopBatteryStatusPoller *) initWithDelegate:(id <TetherStatusPollerDelegate>) theDelegate
                                        status:(TetherStatus *) theStatus;

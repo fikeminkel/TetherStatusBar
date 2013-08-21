@@ -1,7 +1,22 @@
-#import "TetherPoller.h"
+#import "TetherApiPoller.h"
 #import "TetherStatusUtils.h"
 
-@implementation TetherPoller
+@implementation TetherApiPoller
+
+@synthesize delegate;
+@synthesize status;
+
+
+-(TetherApiPoller *) initWithDelegate:(id<TetherStatusPollerDelegate>) theDelegate
+                             status:(TetherStatus *)theStatus
+{
+    self = [self init];
+    if (self) {
+        delegate = [theDelegate retain];
+        status = [theStatus retain];
+    }
+    return self;
+}
 
 -(void) startPolling:(NSTimeInterval)interval
 {
@@ -76,5 +91,14 @@
     DLog(@"connection didFailWithError %@", error);
 }
 
-
+-(void) dealloc
+{
+    [delegate release];
+    delegate = nil;
+    
+    [status release];
+    status = nil;
+    
+    [super dealloc];
+}
 @end

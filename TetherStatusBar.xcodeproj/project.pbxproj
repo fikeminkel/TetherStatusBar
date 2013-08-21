@@ -16,7 +16,7 @@
 		DD3CE7F41742A9AC0074FFEA /* FPopConnectionStatusPoller.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F31742A9AC0074FFEA /* FPopConnectionStatusPoller.mm */; };
 		DD3CE7FA1742AB980074FFEA /* FPopTestConnectionStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7F91742AB980074FFEA /* FPopTestConnectionStatusPoller.m */; };
 		DD3CE7FD1742AF890074FFEA /* FPopBatteryStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7FC1742AF890074FFEA /* FPopBatteryStatusPoller.m */; };
-		DD3CE8001742AFF40074FFEA /* TetherPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7FF1742AFF40074FFEA /* TetherPoller.m */; };
+		DD3CE8001742AFF40074FFEA /* TetherApiPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7FF1742AFF40074FFEA /* TetherApiPoller.m */; };
 		DD3CE8091742BCD70074FFEA /* FPopTestBatteryStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE8081742BCD70074FFEA /* FPopTestBatteryStatusPoller.m */; };
 		DD5CB931174FC933009633EA /* WifiNetworkInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CB930174FC933009633EA /* WifiNetworkInfo.m */; };
 		DD5CB933174FCF07009633EA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5CB932174FCF07009633EA /* SystemConfiguration.framework */; };
@@ -24,6 +24,9 @@
 		DD5CB9381755684A009633EA /* TestHardwareNetworkMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CB9371755684A009633EA /* TestHardwareNetworkMonitor.m */; };
 		DD5CB93C17594FC7009633EA /* TestPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CB93A17594FC7009633EA /* TestPreferencesViewController.m */; };
 		DD5CB93D17594FC7009633EA /* TestPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5CB93B17594FC7009633EA /* TestPreferencesViewController.xib */; };
+		DD7C5F1817C4292200F09323 /* VerizonStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7C5F1717C4292200F09323 /* VerizonStatusPoller.m */; };
+		DD7C5F1B17C429ED00F09323 /* VerizonIndicatorsStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7C5F1A17C429ED00F09323 /* VerizonIndicatorsStatusPoller.m */; };
+		DD7C5F1E17C42FBF00F09323 /* VerizonStatisticsStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7C5F1D17C42FBF00F09323 /* VerizonStatisticsStatusPoller.m */; };
 		DD8225301742D35C006EFE04 /* battery-full-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252A1742D35C006EFE04 /* battery-full-charging.png */; };
 		DD8225311742D35C006EFE04 /* battery-full-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252B1742D35C006EFE04 /* battery-full-normal.png */; };
 		DD8225321742D35C006EFE04 /* battery-low-charging.png in Resources */ = {isa = PBXBuildFile; fileRef = DD82252C1742D35C006EFE04 /* battery-low-charging.png */; };
@@ -69,8 +72,8 @@
 		DD3CE7F91742AB980074FFEA /* FPopTestConnectionStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopTestConnectionStatusPoller.m; sourceTree = "<group>"; };
 		DD3CE7FB1742AF890074FFEA /* FPopBatteryStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopBatteryStatusPoller.h; sourceTree = "<group>"; };
 		DD3CE7FC1742AF890074FFEA /* FPopBatteryStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopBatteryStatusPoller.m; sourceTree = "<group>"; };
-		DD3CE7FE1742AFF40074FFEA /* TetherPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TetherPoller.h; sourceTree = "<group>"; };
-		DD3CE7FF1742AFF40074FFEA /* TetherPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TetherPoller.m; sourceTree = "<group>"; };
+		DD3CE7FE1742AFF40074FFEA /* TetherApiPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TetherApiPoller.h; sourceTree = "<group>"; };
+		DD3CE7FF1742AFF40074FFEA /* TetherApiPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TetherApiPoller.m; sourceTree = "<group>"; };
 		DD3CE8011742B1B20074FFEA /* TetherStatusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TetherStatusUtils.h; sourceTree = "<group>"; };
 		DD3CE8071742BCD70074FFEA /* FPopTestBatteryStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopTestBatteryStatusPoller.h; sourceTree = "<group>"; };
 		DD3CE8081742BCD70074FFEA /* FPopTestBatteryStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopTestBatteryStatusPoller.m; sourceTree = "<group>"; };
@@ -83,6 +86,12 @@
 		DD5CB93917594FC7009633EA /* TestPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPreferencesViewController.h; sourceTree = "<group>"; };
 		DD5CB93A17594FC7009633EA /* TestPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPreferencesViewController.m; sourceTree = "<group>"; };
 		DD5CB93B17594FC7009633EA /* TestPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestPreferencesViewController.xib; sourceTree = "<group>"; };
+		DD7C5F1617C4292200F09323 /* VerizonStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerizonStatusPoller.h; sourceTree = "<group>"; };
+		DD7C5F1717C4292200F09323 /* VerizonStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerizonStatusPoller.m; sourceTree = "<group>"; };
+		DD7C5F1917C429ED00F09323 /* VerizonIndicatorsStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerizonIndicatorsStatusPoller.h; sourceTree = "<group>"; };
+		DD7C5F1A17C429ED00F09323 /* VerizonIndicatorsStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerizonIndicatorsStatusPoller.m; sourceTree = "<group>"; };
+		DD7C5F1C17C42FBF00F09323 /* VerizonStatisticsStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerizonStatisticsStatusPoller.h; sourceTree = "<group>"; };
+		DD7C5F1D17C42FBF00F09323 /* VerizonStatisticsStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerizonStatisticsStatusPoller.m; sourceTree = "<group>"; };
 		DD82252A1742D35C006EFE04 /* battery-full-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-full-charging.png"; path = "Resources/battery-full-charging.png"; sourceTree = "<group>"; };
 		DD82252B1742D35C006EFE04 /* battery-full-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-full-normal.png"; path = "Resources/battery-full-normal.png"; sourceTree = "<group>"; };
 		DD82252C1742D35C006EFE04 /* battery-low-charging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-low-charging.png"; path = "Resources/battery-low-charging.png"; sourceTree = "<group>"; };
@@ -287,32 +296,22 @@
 		DDC7B0C417C3060900CB0280 /* Verizon Jetpack */ = {
 			isa = PBXGroup;
 			children = (
-				DDC7B0C617C3064200CB0280 /* Battery Status */,
-				DDC7B0C517C3062600CB0280 /* Connection Status */,
+				DD7C5F1617C4292200F09323 /* VerizonStatusPoller.h */,
+				DD7C5F1717C4292200F09323 /* VerizonStatusPoller.m */,
+				DD7C5F1917C429ED00F09323 /* VerizonIndicatorsStatusPoller.h */,
+				DD7C5F1A17C429ED00F09323 /* VerizonIndicatorsStatusPoller.m */,
+				DD7C5F1C17C42FBF00F09323 /* VerizonStatisticsStatusPoller.h */,
+				DD7C5F1D17C42FBF00F09323 /* VerizonStatisticsStatusPoller.m */,
 			);
 			name = "Verizon Jetpack";
-			sourceTree = "<group>";
-		};
-		DDC7B0C517C3062600CB0280 /* Connection Status */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Connection Status";
-			sourceTree = "<group>";
-		};
-		DDC7B0C617C3064200CB0280 /* Battery Status */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Battery Status";
 			sourceTree = "<group>";
 		};
 		DDC7B0CA17C3906000CB0280 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				DD3CE8011742B1B20074FFEA /* TetherStatusUtils.h */,
-				DD3CE7FE1742AFF40074FFEA /* TetherPoller.h */,
-				DD3CE7FF1742AFF40074FFEA /* TetherPoller.m */,
+				DD3CE7FE1742AFF40074FFEA /* TetherApiPoller.h */,
+				DD3CE7FF1742AFF40074FFEA /* TetherApiPoller.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -413,7 +412,7 @@
 				DD3CE7F41742A9AC0074FFEA /* FPopConnectionStatusPoller.mm in Sources */,
 				DD3CE7FA1742AB980074FFEA /* FPopTestConnectionStatusPoller.m in Sources */,
 				DD3CE7FD1742AF890074FFEA /* FPopBatteryStatusPoller.m in Sources */,
-				DD3CE8001742AFF40074FFEA /* TetherPoller.m in Sources */,
+				DD3CE8001742AFF40074FFEA /* TetherApiPoller.m in Sources */,
 				DD3CE8091742BCD70074FFEA /* FPopTestBatteryStatusPoller.m in Sources */,
 				DD822540174AD9BE006EFE04 /* GeneralPreferencesViewController.m in Sources */,
 				DD822548174ADAC1006EFE04 /* MASPreferencesWindowController.m in Sources */,
@@ -424,6 +423,9 @@
 				DDDC71991790A8490063BB93 /* TetherStatus.mm in Sources */,
 				DDDC71A21790AC230063BB93 /* TetherStatusPoller.m in Sources */,
 				DDC7B0CD17C393BA00CB0280 /* FPopStatusPoller.m in Sources */,
+				DD7C5F1817C4292200F09323 /* VerizonStatusPoller.m in Sources */,
+				DD7C5F1B17C429ED00F09323 /* VerizonIndicatorsStatusPoller.m in Sources */,
+				DD7C5F1E17C42FBF00F09323 /* VerizonStatisticsStatusPoller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

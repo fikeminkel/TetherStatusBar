@@ -5,10 +5,8 @@
 -(FPopBatteryStatusPoller *) initWithDelegate:(id<TetherStatusPollerDelegate>)theDelegate
                                        status:(TetherStatus *) theStatus
 {
-    self = [super init];
+    self = [super initWithDelegate:theDelegate status:theStatus];
     if (self) {
-        self->delegate = [theDelegate retain];
-        self->status = [theStatus retain];
         self.statusURL = [NSURL URLWithString:@"http://192.168.1.1/cgi-bin/webmain.cgi?act=act_battery_status&TYPE=BISCUIT"];
     }
     return self;
@@ -27,14 +25,4 @@
     [delegate statusUpdated:status];
 }
 
--(void) dealloc
-{
-    [delegate release];
-    delegate = nil;
-    
-    [status release];
-    status = nil;
-    
-    [super dealloc];
-}
 @end

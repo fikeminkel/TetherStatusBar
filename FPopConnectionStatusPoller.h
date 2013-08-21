@@ -1,14 +1,11 @@
 #import <Foundation/Foundation.h>
-#import "TetherPoller.h"
+#import "TetherApiPoller.h"
 #import "TetherStatusPoller.h"
 
-@interface FPopConnectionStatusPoller : TetherPoller {
-    id <TetherStatusPollerDelegate> delegate;
-    TetherStatus *status;
-}
+@interface FPopConnectionStatusPoller : TetherApiPoller;
 
 -(FPopConnectionStatusPoller *) initWithDelegate:(id <TetherStatusPollerDelegate>) theDelegate
-                                          status:(TetherStatus*) status;
+                                          status:(TetherStatus*) theStatus;
 -(void) updateStatus:(NSDictionary *) data;
 -(int) calcSignalLevel:(int) level;
 
