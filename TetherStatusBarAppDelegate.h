@@ -19,6 +19,7 @@
     HardwareNetworkMonitor *networkMonitor;
     
     NSString *currentSSID;
+    NSString *currentDeviceType;
 }
 
 -(IBAction)showPreferencesPanel:(id)sender;

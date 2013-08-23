@@ -10,7 +10,8 @@
 {
     self = [self init];
     if (self) {
-        self.delegate = theDelegate;
+        self.delegate = [theDelegate retain];
+        self.status = [[TetherStatus disconnectedStatus] retain];
     }
     return self;
 }
@@ -32,4 +33,14 @@
     mustOverride();
 }
 
+-(void) dealloc
+{
+    [delegate release];
+    delegate = nil;
+    
+    [status release];
+    status = nil;
+    
+    [super dealloc];
+}
 @end

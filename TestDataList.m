@@ -2,6 +2,23 @@
 
 @implementation TestDataList
 
+-(TestDataList *) initWithObjects:(id) firstObj, ... NS_REQUIRES_NIL_TERMINATION
+{
+    NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
+    id eachObj;
+    va_list arguments;
+
+    if (firstObj) {
+        [array addObject:firstObj];
+        va_start(arguments, firstObj);
+        while ((eachObj = va_arg(arguments, id))) {
+            [array addObject:eachObj];
+        }
+        va_end(arguments);
+    }
+    return [self initWithArray:array];
+}
+
 -(TestDataList *) initWithArray:(NSArray *)theList
 {
     self = [self init];

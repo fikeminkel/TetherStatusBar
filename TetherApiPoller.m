@@ -47,6 +47,11 @@
     }
 }
 
+-(void) statusUpdated
+{
+    [delegate statusUpdated:[status copy]];
+}
+
 #pragma mark -
 #pragma mark "abstract" methods
 -(void) updateStatus:(NSDictionary *)data

@@ -30,6 +30,7 @@ static NSMutableDictionary *batteryImages;
         [self initStatusImages];
         isHighlighted = NO;
         _showBatteryImage = YES;
+        networkType = @"";
     }
     return self;
 }
@@ -48,6 +49,12 @@ static NSMutableDictionary *batteryImages;
 -(void) drawRect:(NSRect)rect
 {
     [statusItem drawStatusBarBackgroundInRect:[self bounds] withHighlight:isHighlighted];
+    NSFont *font = [NSFont fontWithName:@"Helvetica-Bold" size:9];
+    NSColor *color = [NSColor darkGrayColor];
+    NSDictionary *stringAttrs = @{NSFontAttributeName: font, NSForegroundColorAttributeName:color, };
+    NSAttributedString *str = [[[NSAttributedString alloc] initWithString:networkType attributes:stringAttrs] autorelease];
+    [str drawAtPoint:NSMakePoint(0, 9)];
+
     [connectionImage drawAtPoint: NSMakePoint(2, 2) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
     if (_showBatteryImage) {
         [batteryImage drawAtPoint:NSMakePoint(20, 2) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
@@ -81,18 +88,22 @@ static NSMutableDictionary *batteryImages;
     [self setNeedsDisplay:YES];
 }
 
--(void) updateBatteryStatus:(NSString *)battery
+-(void) updateBatteryStatus:(NSString *)batteryStatus level:(NSString *)batteryLevel
 {
     [batteryImage release];
-    batteryImage = [[self resizedImageNamed:[NSString stringWithFormat:@"battery-%@.png",battery] size:16] retain];
+    batteryImage = [[self resizedImageNamed:[NSString stringWithFormat:@"battery-%@-%@.png", batteryLevel, batteryStatus] size:16] retain];
     [self setNeedsDisplay:YES];
 
 }
 
--(void) updateConnectionStatus:(NSString *)signal
+-(void) updateConnectionStatus:(NSString *)signal networkType:(NSString *)theNetworkType
 {
+    DLog(@"%@, %@", signal, theNetworkType);
     [connectionImage release];
     connectionImage = [[statusImages objectForKey:signal] retain];
+    [networkType release];
+    networkType = [theNetworkType retain];
+
     [self setNeedsDisplay:YES];
 }
 
@@ -118,6 +129,9 @@ static NSMutableDictionary *batteryImages;
     connectionImage = nil;
     [batteryImage release];
     batteryImage = nil;
+    [networkType release];
+    networkType = nil;
+    
     [super dealloc];
 }
 

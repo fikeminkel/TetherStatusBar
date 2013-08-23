@@ -15,6 +15,7 @@
 -(TetherApiPoller *) initWithDelegate:(id <TetherStatusPollerDelegate>) theDelegate
                                status:(TetherStatus*) theStatus;
 
+-(void) statusUpdated;
 -(void) startPolling:(NSTimeInterval)interval;
 -(void) stopPolling;
 

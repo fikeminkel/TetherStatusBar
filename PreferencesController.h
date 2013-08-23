@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+#define GENERAL_PREFS_DEVICE_TYPE @"deviceType"
 #define GENERAL_PREFS_DEVICE_SSID @"ssid"
 #define GENERAL_PREFS_SHOW_BATTERY_USAGE @"showBatteryUsage"
 #define GENERAL_PREFS_SHOW_SIGNAL_STRENGTH @"showSignalStrength"
@@ -12,6 +13,7 @@
 -(void) showBatteryUsageChanged:(BOOL)show;
 -(void) showSignalStrengthChanged:(BOOL)show;
 -(void) deviceSSIDChanged:(NSString *)ssid;
+-(void) deviceTypeChanged:(NSString *)deviceType;
 @end
 
 @interface PreferencesController : NSObject
@@ -19,6 +21,7 @@
     BOOL _showBatteryUsage;
     BOOL _showSignalStrength;
     NSString *_ssid;
+    NSString *_deviceType;
     id <PreferencesControllerDelegate> _delegate;
     
     NSUserDefaults *userDefaults;
@@ -31,6 +34,7 @@
 @property (assign, nonatomic) BOOL showBatteryUsage;
 @property (assign, nonatomic) BOOL showSignalStrength;
 @property (retain) NSString *ssid;
+@property (retain) NSString *deviceType;
 @property (retain) id <PreferencesControllerDelegate> delegate;
 
 @end

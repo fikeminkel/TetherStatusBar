@@ -22,7 +22,7 @@
     // TODO do I need to do something with battery status string?
     //status.statusStr = [NSString stringWithFormat:@"%@-%@", status.level, status.status];
 
-    [delegate statusUpdated:status];
+    [self statusUpdated];
 }
 
 @end

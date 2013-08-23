@@ -18,6 +18,7 @@
         [userDefaults addObserver:self forKeyPath:GENERAL_PREFS_SHOW_BATTERY_USAGE options:NSKeyValueObservingOptionNew context:NULL];
         [userDefaults addObserver:self forKeyPath:GENERAL_PREFS_SHOW_SIGNAL_STRENGTH options:NSKeyValueObservingOptionNew context:NULL];
         [userDefaults addObserver:self forKeyPath:GENERAL_PREFS_DEVICE_SSID options:NSKeyValueObservingOptionNew context:NULL];
+        [userDefaults addObserver:self forKeyPath:GENERAL_PREFS_DEVICE_TYPE options:NSKeyValueObservingOptionNew context:NULL];
         self.delegate = delegate;
     }
     return self;
@@ -76,6 +77,17 @@
     [userDefaults setValue:ssid forKey:GENERAL_PREFS_DEVICE_SSID];
 }
 
+-(NSString *)deviceType
+{
+    return [userDefaults stringForKey:GENERAL_PREFS_DEVICE_TYPE];
+}
+
+-(void) setDeviceType:(NSString *)deviceType
+{
+    [userDefaults setValue:deviceType forKey:GENERAL_PREFS_DEVICE_TYPE];
+}
+
+
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     DLog(@"keyPath: %@", keyPath);
@@ -87,6 +99,9 @@
     }
     if ([keyPath isEqual:GENERAL_PREFS_DEVICE_SSID]) {
         [_delegate deviceSSIDChanged:self.ssid];
+    }
+    if ([keyPath isEqual:GENERAL_PREFS_DEVICE_TYPE]) {
+        [_delegate deviceTypeChanged:self.deviceType];
     }
 }
 

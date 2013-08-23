@@ -19,8 +19,8 @@ typedef enum {
 } TetherBatteryStatusLevelType;
 #define kTetherBatteryStatusLevelTypeNamesArray @"unknown", @"low", @"medium", @"full", nil
 
-@interface TetherStatus : NSObject {
-    NSString *connectionStatus;
+@interface TetherStatus : NSObject <NSCopying> {
+    NSString *status;
     NSString *networkType;
     NSString *signalStr;
     NSString *uptime;

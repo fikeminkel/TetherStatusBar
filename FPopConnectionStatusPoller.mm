@@ -51,7 +51,7 @@ static NSArray *signalLevels = [NSArray arrayWithObjects:
         status.networkType = @"4G";
     }
 
-    [delegate statusUpdated:status];
+    [self statusUpdated];
 }
 
 @end

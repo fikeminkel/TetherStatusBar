@@ -7,8 +7,8 @@
 {
     self = [super init];
     if (self) {
-        batteryMeters = [[TestDataList alloc] initWithArray:[[[NSArray alloc] initWithObjects:@"1", @"2", @"3", nil] autorelease]];
-        chargingStatus = [[TestDataList alloc] initWithArray:[[[NSArray alloc] initWithObjects:@"charging", @"normal", nil] autorelease]];
+        batteryMeters = [[TestDataList alloc] initWithObjects:@"1", @"2", @"3", nil];
+        chargingStatus = [[TestDataList alloc] initWithObjects:@"charging", @"normal", nil];
     }
     return self;
 }

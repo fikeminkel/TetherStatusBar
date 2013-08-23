@@ -1,11 +1,13 @@
 #import "VerizonStatusPoller.h"
 #import "VerizonTestIndicatorsStatusPoller.h"
 #import "VerizonTestStatisticsStatusPoller.h"
+#import "TetherStatusUtils.h"
 
 @implementation VerizonStatusPoller
 
 -(VerizonStatusPoller *) initWithDelegate:(id<TetherStatusPollerDelegate>)theDelegate
 {
+    
     self = [super initWithDelegate:theDelegate];
     if (self) {
 #ifdef SIMULATE_NETWORK

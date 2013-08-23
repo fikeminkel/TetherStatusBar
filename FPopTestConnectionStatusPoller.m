@@ -7,7 +7,7 @@
 {
     self = [super init];
     if (self) {
-        signalStrengths = [[TestDataList alloc] initWithArray:[[[NSArray alloc] initWithObjects:@"N/A", @"0", @"5", @"10", @"15", @"20", @"25", @"30", nil] autorelease]];
+        signalStrengths = [[TestDataList alloc] initWithObjects:@"N/A", @"0", @"5", @"10", @"15", @"20", @"25", @"30", nil];
     }
     return self;
 }

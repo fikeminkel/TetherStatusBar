@@ -25,6 +25,7 @@
 
 -(void) fireOnLaunch
 {
+    [self observeValueForKeyPath:TEST_PREFS_WIRELESS_CONNECTED ofObject:nil change:nil context:nil];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

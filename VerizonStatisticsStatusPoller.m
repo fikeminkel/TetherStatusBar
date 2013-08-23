@@ -15,7 +15,7 @@
 {
     status.uptime = [data valueForKey:@"duration"];
     status.ipAddress = [data valueForKey:@"IPv4Address"];
-    [delegate statusUpdated:status];
+    [self statusUpdated];
 }
 
 @end

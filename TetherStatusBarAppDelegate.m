@@ -4,6 +4,7 @@
 
 #import "TetherStatusBarAppDelegate.h"
 
+#import "VerizonStatusPoller.h"
 #import "FPopStatusPoller.h"
 #import "FPopTestConnectionStatusPoller.h"
 #import "TetherStatus.h"
@@ -13,11 +14,19 @@
 #import "GeneralPreferencesViewController.h"
 @implementation TetherStatusBarAppDelegate
 
+-(void) loadUserDefaults
+{
+    NSString *defaultsPath = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
+    NSDictionary *defaultsDict = [NSDictionary dictionaryWithContentsOfFile:defaultsPath];
+    DLog(@"%@", defaultsDict);
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDict];
+}
+
+
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     app = (NSApplication *)aNotification.object;
 
-    statusPoller = [[FPopStatusPoller alloc] initWithDelegate:self];
 #ifdef SIMULATE_NETWORK
     networkMonitor = [[TestHardwareNetworkMonitor alloc] initWithDelegate:self];
 #endif
@@ -59,6 +68,8 @@
 
 -(void)awakeFromNib
 {
+    [self loadUserDefaults];
+
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     
     statusView = [[TetherStatusView alloc] init];
@@ -66,10 +77,13 @@
     [statusItem setView:statusView];
     [statusView setMenu:statusMenu];
 
-    [statusView updateConnectionStatus:[TetherStatus disconnectedStatus].signal];
-    [statusView updateBatteryStatus:[TetherStatus disconnectedStatus].batteryStatus];
+    TetherStatus *disconnectedStatus = [TetherStatus disconnectedStatus];
+    [statusView updateConnectionStatus:disconnectedStatus.signal networkType:disconnectedStatus.networkType];
+    [statusView updateBatteryStatus:disconnectedStatus.batteryStatus level:disconnectedStatus.batteryLevel];
 
     prefsController = [[PreferencesController alloc] initWithDelegate:self];
+    
+    [self createStatusPoller:[prefsController deviceType]];
     [self showHideBatteryUsage:prefsController.showBatteryUsage];
 }
 
@@ -79,6 +93,15 @@
     [app terminate:self];
 }
 
+-(void) createStatusPoller:(NSString *)deviceType
+{
+    DLog(@"%@", deviceType);
+    if ([deviceType isEqual:@"Verizon Wireless"]) {
+        statusPoller = [[VerizonStatusPoller alloc] initWithDelegate:self];
+    } else {
+        statusPoller = [[FPopStatusPoller alloc] initWithDelegate:self];
+    }
+}
 
 -(void) showHideBatteryUsage:(BOOL)show
 {
@@ -94,9 +117,9 @@
 -(void) stopPolling
 {
     [statusPoller stopPolling];
-
-    [statusView updateConnectionStatus:[TetherStatus disconnectedStatus].signal];
-    [statusView updateBatteryStatus:[TetherStatus disconnectedStatus].batteryStatus];
+    TetherStatus *disconnectedStatus = [TetherStatus disconnectedStatus];
+    [statusView updateConnectionStatus:disconnectedStatus.signal networkType:disconnectedStatus.networkType];
+    [statusView updateBatteryStatus:disconnectedStatus.batteryStatus level:disconnectedStatus.batteryLevel];
 }
 
 -(void) startPolling
@@ -108,15 +131,17 @@
 #pragma mark TetherStatusPollerDelegate methods
 -(void) statusUpdated:(TetherStatus *)status
 {
-    NSString *statusTxt = [NSString stringWithFormat:@"Status:%@\nSignal:%@\nUptime:%@\nIP Address:%@",
+    DLog(@"%@", status);
+    NSString *statusTxt = [NSString stringWithFormat:@"Status:%@\nNetwork:%@\nSignal:%@\nUptime:%@\nIP Address:%@",
                            status.status,
+                           status.networkType,
                            status.signalStr,
                            status.uptime,
                            status.ipAddress];
     if (!lastStatus || ![lastStatus.signal isEqual:status.signal]) {
-        [statusView updateConnectionStatus:status.signal];
-        [statusView updateBatteryStatus:status.batteryLevel];
-        // TODO add battery status update here
+        NSString *networkType = ([status.signal isEqualToString:@"disconnected"]) ? @"" : status.networkType;
+        [statusView updateConnectionStatus:status.signal networkType:networkType];
+        [statusView updateBatteryStatus:status.batteryStatus level:status.batteryLevel];
         [lastStatus release];
         lastStatus = [status retain];
     }
@@ -146,6 +171,16 @@
             [self stopPolling];
         }
     }
+}
+
+-(void) deviceTypeChanged:(NSString *)deviceType
+{
+    [self stopPolling];
+    [statusPoller release];
+    statusPoller = nil;
+    
+    [self createStatusPoller:deviceType];
+    [self startPolling];
 }
 
 #pragma mark -

@@ -42,6 +42,7 @@
 		DD822547174ADAC1006EFE04 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD822544174ADAC1006EFE04 /* MASPreferencesWindow.xib */; };
 		DD822548174ADAC1006EFE04 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD822546174ADAC1006EFE04 /* MASPreferencesWindowController.m */; };
 		DD82254B174C3218006EFE04 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD82254A174C3218006EFE04 /* PreferencesController.m */; };
+		DD93A45B17C572F200C109F2 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD93A45A17C572F200C109F2 /* Defaults.plist */; };
 		DDC7B0CD17C393BA00CB0280 /* FPopStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC7B0CC17C393BA00CB0280 /* FPopStatusPoller.m */; };
 		DDD1D5CD173C1DFC0085FDC6 /* HardwareNetworkMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD1D5CC173C1DFC0085FDC6 /* HardwareNetworkMonitor.m */; };
 		DDD1D5D7173D44920085FDC6 /* network-gsm-full_18.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD1D5D1173D44920085FDC6 /* network-gsm-full_18.png */; };
@@ -117,6 +118,7 @@
 		DD822546174ADAC1006EFE04 /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
 		DD822549174C3218006EFE04 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		DD82254A174C3218006EFE04 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		DD93A45A17C572F200C109F2 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		DDC7B0CB17C393BA00CB0280 /* FPopStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopStatusPoller.h; sourceTree = "<group>"; };
 		DDC7B0CC17C393BA00CB0280 /* FPopStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopStatusPoller.m; sourceTree = "<group>"; };
 		DDD1D5CB173C1DFC0085FDC6 /* HardwareNetworkMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HardwareNetworkMonitor.h; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				8D1107310486CEB800E47090 /* TetherStatusBar-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				DD93A45A17C572F200C109F2 /* Defaults.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				DD822541174AD9BE006EFE04 /* GeneralPreferencesViewController.xib in Resources */,
 				DD822547174ADAC1006EFE04 /* MASPreferencesWindow.xib in Resources */,
 				DD5CB93D17594FC7009633EA /* TestPreferencesViewController.xib in Resources */,
+				DD93A45B17C572F200C109F2 /* Defaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

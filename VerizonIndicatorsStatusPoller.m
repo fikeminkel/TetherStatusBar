@@ -1,4 +1,5 @@
 #import "VerizonIndicatorsStatusPoller.h"
+#import "TetherStatusUtils.h"
 
 @implementation VerizonIndicatorsStatusPoller
 
@@ -47,7 +48,7 @@
     if (type == 4) {
         return @"4G";
     }
-    return NULL;
+    return @"";
 }
 
 -(void) updateStatus:(NSDictionary *) data
@@ -68,8 +69,9 @@
     NSInteger batteryLevel = [[data valueForKey:@"batteryMeter"] intValue];
     batteryLevel = [self calcBatteryLevel:batteryLevel];
     status.batteryLevel = [TetherStatus stringFromLevelType:(TetherBatteryStatusLevelType) batteryLevel];
+    DLog(@"%@", status);
     
-    [delegate statusUpdated:status];
+    [self statusUpdated];
 }
 
 @end
