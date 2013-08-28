@@ -56,6 +56,18 @@
 		DDDC71A21790AC230063BB93 /* TetherStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC71A11790AC230063BB93 /* TetherStatusPoller.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DD4AF57517CE53B0001A1852 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -68,7 +80,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* TetherStatusBar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TetherStatusBar-Info.plist"; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* FPopStatusBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = FPopStatusBar.app; path = TetherStatusBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* TetherStatusBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetherStatusBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD3CE7ED173D8C3B0074FFEA /* TetherStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TetherStatusView.h; sourceTree = "<group>"; };
 		DD3CE7EE173D8C3B0074FFEA /* TetherStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TetherStatusView.m; sourceTree = "<group>"; };
 		DD3CE7F21742A9AC0074FFEA /* FPopConnectionStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopConnectionStatusPoller.h; sourceTree = "<group>"; };
@@ -194,7 +206,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* FPopStatusBar.app */,
+				8D1107320486CEB800E47090 /* TetherStatusBar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -374,6 +386,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				DD4AF57517CE53B0001A1852 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -382,7 +395,7 @@
 			name = TetherStatusBar;
 			productInstallPath = "$(HOME)/Applications";
 			productName = StatusBarApp;
-			productReference = 8D1107320486CEB800E47090 /* FPopStatusBar.app */;
+			productReference = 8D1107320486CEB800E47090 /* TetherStatusBar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
