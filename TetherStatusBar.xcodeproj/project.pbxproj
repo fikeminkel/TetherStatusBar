@@ -18,6 +18,7 @@
 		DD3CE7FD1742AF890074FFEA /* FPopBatteryStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7FC1742AF890074FFEA /* FPopBatteryStatusPoller.m */; };
 		DD3CE8001742AFF40074FFEA /* TetherApiPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE7FF1742AFF40074FFEA /* TetherApiPoller.m */; };
 		DD3CE8091742BCD70074FFEA /* FPopTestBatteryStatusPoller.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3CE8081742BCD70074FFEA /* FPopTestBatteryStatusPoller.m */; };
+		DD4AF57217CD6BBD001A1852 /* TetherStatusBar.icns in Resources */ = {isa = PBXBuildFile; fileRef = DD4AF57117CD6BBD001A1852 /* TetherStatusBar.icns */; };
 		DD5CB931174FC933009633EA /* WifiNetworkInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CB930174FC933009633EA /* WifiNetworkInfo.m */; };
 		DD5CB933174FCF07009633EA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5CB932174FCF07009633EA /* SystemConfiguration.framework */; };
 		DD5CB935174FCF13009633EA /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5CB934174FCF13009633EA /* CoreWLAN.framework */; };
@@ -81,6 +82,7 @@
 		DD3CE8011742B1B20074FFEA /* TetherStatusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TetherStatusUtils.h; sourceTree = "<group>"; };
 		DD3CE8071742BCD70074FFEA /* FPopTestBatteryStatusPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPopTestBatteryStatusPoller.h; sourceTree = "<group>"; };
 		DD3CE8081742BCD70074FFEA /* FPopTestBatteryStatusPoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPopTestBatteryStatusPoller.m; sourceTree = "<group>"; };
+		DD4AF57117CD6BBD001A1852 /* TetherStatusBar.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TetherStatusBar.icns; sourceTree = "<group>"; };
 		DD5CB92F174FC933009633EA /* WifiNetworkInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WifiNetworkInfo.h; sourceTree = "<group>"; };
 		DD5CB930174FC933009633EA /* WifiNetworkInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WifiNetworkInfo.m; sourceTree = "<group>"; };
 		DD5CB932174FCF07009633EA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -200,6 +202,7 @@
 		29B97314FDCFA39411CA2CEA /* StatusBarApp */ = {
 			isa = PBXGroup;
 			children = (
+				DD4AF57117CD6BBD001A1852 /* TetherStatusBar.icns */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -430,6 +433,7 @@
 				DD822547174ADAC1006EFE04 /* MASPreferencesWindow.xib in Resources */,
 				DD5CB93D17594FC7009633EA /* TestPreferencesViewController.xib in Resources */,
 				DD93A45B17C572F200C109F2 /* Defaults.plist in Resources */,
+				DD4AF57217CD6BBD001A1852 /* TetherStatusBar.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

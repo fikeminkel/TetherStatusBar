@@ -86,7 +86,7 @@
 {
     NSError *myError = nil;
     NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&myError];
-    jsonObj = [jsonObj objectForKey:@"data"];
+//    jsonObj = [jsonObj objectForKey:@"data"];
     [self updateStatus:jsonObj];
     [responseData release];
 }

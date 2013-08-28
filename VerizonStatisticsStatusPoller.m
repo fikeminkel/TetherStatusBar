@@ -15,6 +15,9 @@
 {
     status.uptime = [data valueForKey:@"duration"];
     status.ipAddress = [data valueForKey:@"IPv4Address"];
+    NSString *txRate = [(NSDictionary *)[data valueForKey:@"TX"] valueForKey:@"rate"];
+    NSString *rxRate = [(NSDictionary *)[data valueForKey:@"TX"] valueForKey:@"rate"];
+    status.signalStr = [NSString stringWithFormat:@"TX: %@ RX: %@", txRate, rxRate];
     [self statusUpdated];
 }
 
